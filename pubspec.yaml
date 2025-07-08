@@ -25,14 +25,21 @@ flutter:
   assets:
     - assets/images/
 
-
+# إعداد Splash Screen
 flutter_native_splash:
-  color: "#6630bc"
-  image: assets/images/noback_logo.png
+  color: "#613FDA"
+  image: assets/images/splash.png
   android: true
   ios: true
   fullscreen: true
 
+  android_12:
+    color: "#613FDA"
+    image: assets/images/splash.png
+    icon_background_color: "#613FDA"
+
+
+# إعداد أيقونة التطبيق
 flutter_icons:
   android: true
   ios: true
