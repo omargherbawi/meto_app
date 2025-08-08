@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_body.dart';
+import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_actions.dart';
+import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_page_view.dart';
+import 'package:meto_application/Features/OnBoarding/presentation/widget/page_indexing.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -56,101 +58,21 @@ class _OnBoardingState extends State<OnBoarding> {
       body: SafeArea(
         child: Column(
           children: [
-            Expanded(
-              child: PageView.builder(
-                controller: _pageController,
-                itemCount: _pages.length,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemBuilder: (context, index) {
-                  final page = _pages[index];
-                  return OnBoardingBody(
-                    title: page['title']!,
-                    subtitle: page['subtitle']!,
-                    imagePath: page['image']!,
-                  );
-                },
-              ),
+            OnBoardingPageView(
+              pages: _pages,
+              pageController: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(_pages.length, (index) {
-                return AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                    vertical: 16,
-                  ),
-                  width: _currentPage == index ? 12 : 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    color: _currentPage == index
-                        ? Colors.deepPurple
-                        : Colors.deepPurple[100],
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                );
-              }),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
-                vertical: 24.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 120,
-                    child: OutlinedButton(
-                      onPressed: _onSkip,
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Colors.deepPurple),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 32,
-                          vertical: 12,
-                        ),
-                      ),
-                      child: const Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: Colors.deepPurple,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 120,
-                    child: ElevatedButton(
-                      onPressed: _onNext,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 32,
-                          vertical: 12,
-                        ),
-                      ),
-                      child: Text(
-                        _currentPage == _pages.length - 1 ? 'Start' : 'Next',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            PageIndexing(pages: _pages, currentPage: _currentPage),
+
+            OnboardindActions(
+              onSkip: _onSkip,
+              onNext: _onNext,
+              isLastPage: _currentPage == _pages.length - 1,
             ),
           ],
         ),

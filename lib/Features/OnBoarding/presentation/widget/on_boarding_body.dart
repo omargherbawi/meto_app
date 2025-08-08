@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meto_application/config/app_colors.dart';
 
 class OnBoardingBody extends StatelessWidget {
   final String title;
@@ -26,7 +27,7 @@ class OnBoardingBody extends StatelessWidget {
             style: const TextStyle(
               fontSize: 32,
               fontWeight: FontWeight.bold,
-              color: Colors.deepPurple,
+              color: AppColors.primaryColor,
             ),
           ),
           const SizedBox(height: 16),
