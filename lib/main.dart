@@ -2,7 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meto_application/Features/OnBoarding/presentation/views/on_boarding.dart';
+import 'package:meto_application/Features/OnBoarding/presentation/screens/on_boarding.dart';
+import 'package:meto_application/core/routes/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,8 +25,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isArabic = context.locale.languageCode == 'ar';
     return GetMaterialApp(
-      theme: ThemeData(textTheme: GoogleFonts.cairoTextTheme()),
+      getPages: AppRouter.routes,
+      theme: ThemeData(
+        textTheme: isArabic
+            ? GoogleFonts.cairoTextTheme()
+            : GoogleFonts.poppinsTextTheme(),
+        scaffoldBackgroundColor: Colors.white,
+      ),
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,

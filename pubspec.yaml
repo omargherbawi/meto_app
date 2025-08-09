@@ -8,19 +8,20 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
-  get: ^4.7.2
+  cupertino_icons: ^1.0.8
+  easy_localization: ^3.0.8
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  flutter_native_splash: ^2.4.6
   flutter_launcher_icons: ^0.14.4
-  easy_localization: ^3.0.8
+  flutter_native_splash: ^2.4.6
+  flutter_screenutil: ^5.9.3
+  get: ^4.7.2
   google_fonts: ^6.3.0
 
 dev_dependencies:
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
 
 flutter:
   uses-material-design: true
@@ -40,7 +41,6 @@ flutter_native_splash:
     color: "#613FDA"
     image: assets/images/splash.png
     icon_background_color: "#613FDA"
-
 
 # إعداد أيقونة التطبيق
 flutter_icons:

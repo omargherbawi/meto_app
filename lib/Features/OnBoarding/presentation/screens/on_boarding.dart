@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_actions.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_page_view.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/widget/page_indexing.dart';
+import 'package:meto_application/config/assets_paths.dart';
+import 'package:meto_application/core/routes/route_paths.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -18,26 +22,22 @@ class _OnBoardingState extends State<OnBoarding> {
     {
       'title': 'FindYourPeople',
       'subtitle': 'createMeeting',
-      'image': 'assets/images/on_bording_1.png',
+      'image': AssetsPaths.onBoarding1,
     },
     {
       'title': 'OrganizeEffortlessly',
       'subtitle': 'Plan',
-      'image': 'assets/images/on_bording_2.png',
+      'image': AssetsPaths.onBoarding2,
     },
     {
       'title': 'StayConnected',
       'subtitle': 'NeverMissUpdate',
-      'image': 'assets/images/on_bording_3.png',
+      'image': AssetsPaths.onBoarding3,
     },
   ];
 
   void _onSkip() {
-    _pageController.animateToPage(
-      _pages.length - 1,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
+    Get.toNamed(RoutePaths.login);
   }
 
   void _onNext() {
@@ -47,7 +47,7 @@ class _OnBoardingState extends State<OnBoarding> {
         curve: Curves.easeInOut,
       );
     } else {
-      // TODO: Navigate to main app or home screen
+      Get.toNamed(RoutePaths.login);
     }
   }
 
