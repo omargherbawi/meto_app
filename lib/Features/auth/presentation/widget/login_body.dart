@@ -11,13 +11,13 @@ class LoginBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: MediaQuery.of(context).size.height * 0.35,
             width: double.infinity,
             child: Image.asset(AssetsPaths.login, fit: BoxFit.cover),
           ),
 
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: MediaQuery.of(context).size.height * 0.65,
             width: double.infinity,
             child: Container(
               decoration: BoxDecoration(
