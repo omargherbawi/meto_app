@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:meto_application/config/app_colors.dart';
 
@@ -34,8 +35,8 @@ class OnboardindActions extends StatelessWidget {
                   vertical: 12,
                 ),
               ),
-              child: const Text(
-                'Skip',
+              child: Text(
+                'Skip'.tr(),
                 style: TextStyle(color: AppColors.primaryColor, fontSize: 18),
               ),
             ),
@@ -55,7 +56,7 @@ class OnboardindActions extends StatelessWidget {
                 ),
               ),
               child: Text(
-                isLastPage ? 'Start' : 'Next',
+                isLastPage ? 'Start'.tr() : 'Next'.tr(),
                 style: const TextStyle(fontSize: 18, color: Colors.white),
               ),
             ),

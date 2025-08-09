@@ -16,19 +16,18 @@ class _OnBoardingState extends State<OnBoarding> {
 
   final List<Map<String, String>> _pages = [
     {
-      'title': 'Find Your People!',
-      'subtitle':
-          'Create meetings and bring people together, wherever you are.',
+      'title': 'FindYourPeople',
+      'subtitle': 'createMeeting',
       'image': 'assets/images/on_bording_1.png',
     },
     {
-      'title': 'Organize Effortlessly',
-      'subtitle': 'Plan, schedule, and manage your events with ease.',
+      'title': 'OrganizeEffortlessly',
+      'subtitle': 'Plan',
       'image': 'assets/images/on_bording_2.png',
     },
     {
-      'title': 'Stay Connected',
-      'subtitle': 'Never miss an update. Stay in touch with your group.',
+      'title': 'StayConnected',
+      'subtitle': 'NeverMissUpdate',
       'image': 'assets/images/on_bording_3.png',
     },
   ];

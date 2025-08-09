@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boarding_body.dart';
 
@@ -23,8 +24,8 @@ class OnBoardingPageView extends StatelessWidget {
         itemBuilder: (context, index) {
           final page = pages[index];
           return OnBoardingBody(
-            title: page['title']!,
-            subtitle: page['subtitle']!,
+            title: page['title']!.tr(),
+            subtitle: page['subtitle']!.tr(),
             imagePath: page['image']!,
           );
         },
