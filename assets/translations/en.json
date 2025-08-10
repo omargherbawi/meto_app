@@ -8,6 +8,13 @@
     "Skip" : "Skip",
     "Next" : "Next",
     "Start" : "Start",
-    "Login" : "Login"
+    "Login" : "Login",
+    "Email" : "Email",
+    "Password" : "Password",
+    "forgotPassword" : "Forgot Password ?",
+    "dontHaveAccount" : "Don't have an account ?",
+    "RegisterNow" : "Register Now",
+    "OR" : "OR"
+
     
 }
