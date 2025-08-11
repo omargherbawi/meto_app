@@ -75,12 +75,15 @@ class LoginBody extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 18),
-                    Text(
-                      "forgotPassword".tr(),
-                      style: TextStyle(
-                        color: AppColors.secondry,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        "forgotPassword".tr(),
+                        style: TextStyle(
+                          color: AppColors.secondry,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     SizedBox(height: 12),

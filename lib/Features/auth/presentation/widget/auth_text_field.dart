@@ -54,7 +54,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 16),
+        contentPadding: const EdgeInsets.symmetric(vertical: 13),
       ),
       keyboardType: widget.keyboardType,
     );
