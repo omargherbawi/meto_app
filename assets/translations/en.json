@@ -9,12 +9,18 @@
     "Next" : "Next",
     "Start" : "Start",
     "Login" : "Login",
+    "Signup" : "Signup",
     "Email" : "Email",
     "Password" : "Password",
     "forgotPassword" : "Forgot Password ?",
     "dontHaveAccount" : "Don't have an account ?",
     "RegisterNow" : "Register Now",
-    "OR" : "OR"
+    "OR" : "OR",
+    "Name" : "Name",
+    "PhoneNumber" : "Phone Number",
+    "ConfirmPassword" : "Confirm Password",
+    "HaveAccount" : " already have an account ?",
+    "loginNow" : "Login Now"
 
     
 }

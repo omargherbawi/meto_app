@@ -1,15 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:meto_application/Features/auth/presentation/widget/auth_text_field.dart';
 import 'package:meto_application/Features/auth/presentation/widget/social_button.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
-import 'package:meto_application/core/routes/route_paths.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
+class SignupBody extends StatelessWidget {
+  const SignupBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class LoginBody extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.30,
             width: double.infinity,
-            child: Image.asset(AssetsPaths.login, fit: BoxFit.cover),
+            child: Image.asset(AssetsPaths.register, fit: BoxFit.cover),
           ),
           Container(
             width: double.infinity,
@@ -43,21 +41,34 @@ class LoginBody extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'Login'.tr(),
+                    'Signup'.tr(),
                     style: TextStyle(color: Colors.white, fontSize: 25),
                   ),
                   SizedBox(height: 16),
                   AuthTextField(
+                    title: 'Name',
+                    prefixIcon: Icon(Icons.person_outlined, color: Colors.grey),
+                    keyboardType: TextInputType.text,
+                  ),
+                  SizedBox(height: 16),
+                  AuthTextField(
                     title: 'Email',
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: Colors.grey,
-                    ),
+                    prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
                     keyboardType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 14),
                   AuthTextField(
                     title: 'Password',
+                    prefixIcon: const Icon(
+                      Icons.lock_outlined,
+                      color: Colors.grey,
+                    ),
+                    keyboardType: TextInputType.text,
+                    isPassword: true,
+                  ),
+                  SizedBox(height: 14),
+                  AuthTextField(
+                    title: 'ConfirmPassword',
                     prefixIcon: const Icon(
                       Icons.lock_outlined,
                       color: Colors.grey,
@@ -76,37 +87,26 @@ class LoginBody extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: Text(
-                      'Login'.tr(),
+                      'Signup'.tr(),
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                   ),
-                  SizedBox(height: 18),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Text(
-                      "forgotPassword".tr(),
-                      style: TextStyle(
-                        color: AppColors.secondry,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 12),
+
+                  SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'dontHaveAccount'.tr(),
+                        'HaveAccount'.tr(),
                         style: TextStyle(fontSize: 15, color: Colors.white),
                       ),
                       SizedBox(width: 4),
                       GestureDetector(
                         onTap: () {
-                          Get.toNamed(RoutePaths.signup);
+                          Get.back();
                         },
                         child: Text(
-                          'RegisterNow'.tr(),
+                          'loginNow'.tr(),
                           style: TextStyle(
                             fontSize: 15,
                             color: AppColors.secondry,

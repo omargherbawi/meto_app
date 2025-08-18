@@ -9,12 +9,18 @@
     "Next" : "التالي",
     "Start" : "ابدأ",
      "Login" : "تسجيل الدخول",
+     "Signup" : "انشاء حساب",
      "Email" : "البريد الإلكتروني",
      "Password" : "كلمة المرور",
      "forgotPassword" : "هل نسيت كلمة المرور؟",
      "dontHaveAccount" : "ليس لديك حساب ؟",
      "RegisterNow" : "سجل الان",
-     "OR" : "او"
+     "OR" : "او", 
+     "Name" : "الاسم",
+     "PhoneNumber" : "رقم الجوال",
+     "ConfirmPassword": "تاكيد كلمة المرور",
+     "HaveAccount" : "لديك حساب بالفعل ؟",
+     "loginNow" : "تسجيل الدخول "
 
     
 }
