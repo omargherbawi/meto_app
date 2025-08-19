@@ -5,9 +5,41 @@ import 'package:meto_application/Features/auth/presentation/widget/auth_text_fie
 import 'package:meto_application/Features/auth/presentation/widget/social_button.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
+import 'package:meto_application/core/validation/text_field_validation.dart';
 
-class SignupBody extends StatelessWidget {
+class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
+
+  @override
+  State<SignupBody> createState() => _SignupBodyState();
+}
+
+class _SignupBodyState extends State<SignupBody> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
+
+  void _onSignupPressed() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // Form is valid, proceed with signup
+      print('Name: ${_nameController.text}');
+      print('Email: ${_emailController.text}');
+      print('Password: ${_passwordController.text}');
+      print('Confirm Password: ${_confirmPasswordController.text}');
+      // TODO: Implement actual signup logic here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,60 +69,73 @@ class SignupBody extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Signup'.tr(),
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                  SizedBox(height: 16),
-                  AuthTextField(
-                    title: 'Name',
-                    prefixIcon: Icon(Icons.person_outlined, color: Colors.grey),
-                    keyboardType: TextInputType.text,
-                  ),
-                  SizedBox(height: 16),
-                  AuthTextField(
-                    title: 'Email',
-                    prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: 14),
-                  AuthTextField(
-                    title: 'Password',
-                    prefixIcon: const Icon(
-                      Icons.lock_outlined,
-                      color: Colors.grey,
-                    ),
-                    keyboardType: TextInputType.text,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 14),
-                  AuthTextField(
-                    title: 'ConfirmPassword',
-                    prefixIcon: const Icon(
-                      Icons.lock_outlined,
-                      color: Colors.grey,
-                    ),
-                    keyboardType: TextInputType.text,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.authAction,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      minimumSize: Size(double.infinity, 50),
-                    ),
-                    onPressed: () {},
-                    child: Text(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
                       'Signup'.tr(),
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
-                  ),
+                    SizedBox(height: 16),
+                    AuthTextField(
+                      title: 'Name',
+                      prefixIcon: Icon(Icons.person_outlined, color: Colors.grey),
+                      keyboardType: TextInputType.text,
+                      controller: _nameController,
+                      validator: TextFieldValidation.validateName,
+                    ),
+                    SizedBox(height: 16),
+                    AuthTextField(
+                      title: 'Email',
+                      prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      validator: TextFieldValidation.validateEmail,
+                    ),
+                    SizedBox(height: 14),
+                    AuthTextField(
+                      title: 'Password',
+                      prefixIcon: const Icon(
+                        Icons.lock_outlined,
+                        color: Colors.grey,
+                      ),
+                      keyboardType: TextInputType.text,
+                      isPassword: true,
+                      controller: _passwordController,
+                      validator: TextFieldValidation.validatePassword,
+                    ),
+                    SizedBox(height: 14),
+                    AuthTextField(
+                      title: 'ConfirmPassword',
+                      prefixIcon: const Icon(
+                        Icons.lock_outlined,
+                        color: Colors.grey,
+                      ),
+                      keyboardType: TextInputType.text,
+                      isPassword: true,
+                      controller: _confirmPasswordController,
+                      validator: (value) => TextFieldValidation.validateConfirmPassword(
+                        value,
+                        _passwordController.text,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.authAction,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        minimumSize: Size(double.infinity, 50),
+                      ),
+                      onPressed: _onSignupPressed,
+                      child: Text(
+                        'Signup'.tr(),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
 
                   SizedBox(height: 20),
                   Row(
@@ -152,8 +197,9 @@ class SignupBody extends StatelessWidget {
                     backgroundColor: AppColors.authAction,
                     onPressed: () {},
                   ),
-                  SizedBox(height: 20),
-                ],
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),
