@@ -7,9 +7,37 @@ import 'package:meto_application/Features/auth/presentation/widget/social_button
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
+import 'package:meto_application/core/validation/text_field_validation.dart';
 
-class LoginBody extends StatelessWidget {
+class LoginBody extends StatefulWidget {
   const LoginBody({super.key});
+
+  @override
+  State<LoginBody> createState() => _LoginBodyState();
+}
+
+class _LoginBodyState extends State<LoginBody> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+
+
+  void _onLoginPressed() {
+    if (_formKey.currentState?.validate() ?? false) {
+      // Form is valid, proceed with login
+      print('Email: ${_emailController.text}');
+      print('Password: ${_passwordController.text}');
+      // TODO: Implement actual login logic here
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,47 +67,53 @@ class LoginBody extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(18.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Login'.tr(),
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                  SizedBox(height: 16),
-                  AuthTextField(
-                    title: 'Email',
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
-                      color: Colors.grey,
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: 14),
-                  AuthTextField(
-                    title: 'Password',
-                    prefixIcon: const Icon(
-                      Icons.lock_outlined,
-                      color: Colors.grey,
-                    ),
-                    keyboardType: TextInputType.text,
-                    isPassword: true,
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.authAction,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      minimumSize: Size(double.infinity, 50),
-                    ),
-                    onPressed: () {},
-                    child: Text(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
                       'Login'.tr(),
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 25),
                     ),
-                  ),
+                    SizedBox(height: 16),
+                    AuthTextField(
+                      title: 'Email',
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey,
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _emailController,
+                      validator: TextFieldValidation.validateEmail,
+                    ),
+                    SizedBox(height: 14),
+                    AuthTextField(
+                      title: 'Password',
+                      prefixIcon: const Icon(
+                        Icons.lock_outlined,
+                        color: Colors.grey,
+                      ),
+                      keyboardType: TextInputType.text,
+                      isPassword: true,
+                      controller: _passwordController,
+                      validator: TextFieldValidation.validatePassword,
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.authAction,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        minimumSize: Size(double.infinity, 50),
+                      ),
+                      onPressed: _onLoginPressed,
+                      child: Text(
+                        'Login'.tr(),
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
                   SizedBox(height: 18),
                   GestureDetector(
                     onTap: () {},
@@ -152,8 +186,9 @@ class LoginBody extends StatelessWidget {
                     backgroundColor: AppColors.authAction,
                     onPressed: () {},
                   ),
-                  SizedBox(height: 20),
-                ],
+                    SizedBox(height: 20),
+                  ],
+                ),
               ),
             ),
           ),

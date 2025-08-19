@@ -21,7 +21,7 @@ class SignupBody extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.30,
             width: double.infinity,
-            child: Image.asset(AssetsPaths.register, fit: BoxFit.cover),
+            child: Image.asset(AssetsPaths.signup, fit: BoxFit.cover,),
           ),
           Container(
             width: double.infinity,

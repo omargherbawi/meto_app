@@ -20,7 +20,18 @@
      "PhoneNumber" : "رقم الجوال",
      "ConfirmPassword": "تاكيد كلمة المرور",
      "HaveAccount" : "لديك حساب بالفعل ؟",
-     "loginNow" : "تسجيل الدخول "
-
-    
+     "loginNow" : "تسجيل الدخول ",
+     
+     "emailRequired" : "البريد الإلكتروني مطلوب",
+     "emailInvalid" : "يرجى إدخال عنوان بريد إلكتروني صحيح",
+     "passwordRequired" : "كلمة المرور مطلوبة",
+     "passwordMinLength" : "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+     "nameRequired" : "الاسم مطلوب",
+     "nameMinLength" : "يجب أن يكون الاسم حرفين على الأقل",
+     "confirmPasswordRequired" : "تأكيد كلمة المرور مطلوب",
+     "passwordsDoNotMatch" : "كلمات المرور غير متطابقة",
+     "phoneRequired" : "رقم الجوال مطلوب",
+     "phoneInvalid" : "يرجى إدخال رقم جوال صحيح",
+     "fieldRequired" : "مطلوب",
+     "fieldMinLength" : "يجب أن يكون على الأقل"
 }

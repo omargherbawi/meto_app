@@ -20,7 +20,18 @@
     "PhoneNumber" : "Phone Number",
     "ConfirmPassword" : "Confirm Password",
     "HaveAccount" : " already have an account ?",
-    "loginNow" : "Login Now"
-
+    "loginNow" : "Login Now",
     
+    "emailRequired" : "Email is required",
+    "emailInvalid" : "Please enter a valid email address",
+    "passwordRequired" : "Password is required",
+    "passwordMinLength" : "Password must be at least 8 characters long",
+    "nameRequired" : "Name is required",
+    "nameMinLength" : "Name must be at least 2 characters long",
+    "confirmPasswordRequired" : "Confirm password is required",
+    "passwordsDoNotMatch" : "Passwords do not match",
+    "phoneRequired" : "Phone number is required",
+    "phoneInvalid" : "Please enter a valid phone number",
+    "fieldRequired" : "is required",
+    "fieldMinLength" : "must be at least"
 }

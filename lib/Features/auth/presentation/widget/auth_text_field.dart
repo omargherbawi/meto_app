@@ -7,13 +7,17 @@ class AuthTextField extends StatefulWidget {
   final Icon prefixIcon;
   final TextInputType keyboardType;
   final bool isPassword;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   const AuthTextField({
     super.key,
     required this.title,
     required this.prefixIcon,
     required this.keyboardType,
-    this.isPassword = false, // لو الحقل باسورد
+    this.isPassword = false,
+    this.controller,
+    this.validator,
   });
 
   @override
@@ -26,6 +30,8 @@ class _AuthTextFieldState extends State<AuthTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
+      validator: widget.validator ,
       cursorColor: AppColors.secondry,
       style: const TextStyle(color: Colors.white),
       obscureText: widget.isPassword ? _obscureText : false,
@@ -55,6 +61,11 @@ class _AuthTextFieldState extends State<AuthTextField> {
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 13),
+        errorStyle: TextStyle(
+          color: const Color.fromARGB(255, 255, 0, 0), 
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       keyboardType: widget.keyboardType,
     );
