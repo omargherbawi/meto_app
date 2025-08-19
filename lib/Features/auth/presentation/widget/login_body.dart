@@ -116,7 +116,12 @@ class _LoginBodyState extends State<LoginBody> {
                     ),
                   SizedBox(height: 18),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+
+                      Get.toNamed(RoutePaths.forgotPassword);
+
+
+                    },
                     child: Text(
                       "forgotPassword".tr(),
                       style: TextStyle(
