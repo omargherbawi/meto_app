@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:meto_application/Features/OnBoarding/presentation/screens/on_boarding.dart';
+import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/routes/router.dart';
 
 void main() async {
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final isArabic = context.locale.languageCode == 'ar';
     return GetMaterialApp(
+      initialRoute: RoutePaths.onBording,
       getPages: AppRouter.routes,
       theme: ThemeData(
         textTheme: isArabic
@@ -38,7 +39,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       debugShowCheckedModeBanner: false,
-      home: OnBoarding(),
     );
   }
 }

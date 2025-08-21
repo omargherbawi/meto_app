@@ -33,5 +33,7 @@
      "phoneRequired" : "رقم الجوال مطلوب",
      "phoneInvalid" : "يرجى إدخال رقم جوال صحيح",
      "fieldRequired" : "مطلوب",
-     "fieldMinLength" : "يجب أن يكون على الأقل"
+     "fieldMinLength" : "يجب أن يكون على الأقل",
+     "ResetPassword" : "اعادة تعيين كلمة المرور"
+     
 }
