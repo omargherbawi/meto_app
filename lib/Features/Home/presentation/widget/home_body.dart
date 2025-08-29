@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/Features/Home/presentation/widget/home_app_bar.dart';
 import 'package:meto_application/Features/Home/presentation/widget/home_meeting_item.dart';
+import 'package:meto_application/Features/Home/presentation/widget/create_meeting_bottom_sheet.dart';
 import 'package:meto_application/config/app_colors.dart';
 
 class HomeBody extends StatelessWidget {
@@ -12,21 +13,19 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        // App Bar as a Sliver
         SliverToBoxAdapter(child: HomeAppBar()),
 
-        // Header Section
         SliverToBoxAdapter(
-          child: Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 20.w,
-                  right: 20.w,
-                  top: 30.h,
-                  bottom: 16.h,
-                ),
-                child: Text(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 10.w,
+              right: 20.w,
+              top: 18.h,
+              bottom: 8.h,
+            ),
+            child: Row(
+              children: [
+                Text(
                   'YourMeetings'.tr(),
                   style: TextStyle(
                     fontSize: 26.sp,
@@ -34,20 +33,25 @@ class HomeBody extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
-              Spacer(),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: IconButton(
-                  onPressed: () {},
+
+                Spacer(),
+                IconButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) => const CreateMeetingBottomSheet(),
+                    );
+                  },
                   icon: Icon(
                     Icons.add,
                     color: AppColors.primaryColor,
                     size: 35.sp,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
 

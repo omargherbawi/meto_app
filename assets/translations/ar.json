@@ -37,6 +37,10 @@
      "ResetPassword" : "اعادة تعيين كلمة المرور",
      "SendResetLink" : "ارسل رابط اعادة التعيين",
      "Enter your email address": "ادخل  بريدك الالكتروني",
-     "YourMeetings" : "اجتماعاتك"
+     "YourMeetings" : "اجتماعاتك",
+     "CreateMeeting" : "إنشاء اجتماع",
+     "Save" : "حفظ",
+     "Cancel" : "الغاء"
+
      
 }

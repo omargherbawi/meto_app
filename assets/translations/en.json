@@ -36,6 +36,11 @@
     "fieldMinLength" : "must be at least",
     "SendResetLink" : "Send reset link",
     "Enter your email address" : "Enter your email address",
-    "YourMeetings" : "Your Meetings"
+    "YourMeetings" : "Your Meetings",
+    "CreateMeeting" : "Create Meeting",
+    "Save" : "Save",
+    "Cancel" : "Cancel"
+
+    
     
 }
