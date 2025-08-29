@@ -35,7 +35,7 @@
     "fieldRequired" : "is required",
     "fieldMinLength" : "must be at least",
     "SendResetLink" : "Send reset link",
-    "Enter your email address" : "Enter your email address"
-    
+    "Enter your email address" : "Enter your email address",
+    "YourMeetings" : "Your Meetings"
     
 }

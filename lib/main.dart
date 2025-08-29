@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/routes/router.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  ();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -26,19 +27,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isArabic = context.locale.languageCode == 'ar';
-    return GetMaterialApp(
-      initialRoute: RoutePaths.onBording,
-      getPages: AppRouter.routes,
-      theme: ThemeData(
-        textTheme: isArabic
-            ? GoogleFonts.cairoTextTheme()
-            : GoogleFonts.poppinsTextTheme(),
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      locale: context.locale,
-      supportedLocales: context.supportedLocales,
-      localizationsDelegates: context.localizationDelegates,
-      debugShowCheckedModeBanner: false,
+
+    return ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+          initialRoute: RoutePaths.onBording,
+          getPages: AppRouter.routes,
+          theme: ThemeData(
+            textTheme: isArabic
+                ? GoogleFonts.cairoTextTheme()
+                : GoogleFonts.poppinsTextTheme(),
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          locale: context.locale,
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
+          debugShowCheckedModeBanner: false,
+        );
+      },
     );
   }
 }

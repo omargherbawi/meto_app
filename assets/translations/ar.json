@@ -36,6 +36,7 @@
      "fieldMinLength" : "يجب أن يكون على الأقل",
      "ResetPassword" : "اعادة تعيين كلمة المرور",
      "SendResetLink" : "ارسل رابط اعادة التعيين",
-     "Enter your email address": "ادخل  بريدك الالكتروني"
+     "Enter your email address": "ادخل  بريدك الالكتروني",
+     "YourMeetings" : "اجتماعاتك"
      
 }

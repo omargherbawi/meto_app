@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
 
 class AuthTextField extends StatefulWidget {
@@ -57,13 +58,13 @@ class _AuthTextFieldState extends State<AuthTextField> {
         filled: true,
         fillColor: const Color(0xFF1A083B),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.w),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.symmetric(vertical: 13),
+        contentPadding: EdgeInsets.symmetric(vertical: 13.h),
         errorStyle: TextStyle(
           color: const Color.fromARGB(255, 255, 0, 0), 
-          fontSize: 12,
+          fontSize: 12.sp,
           fontWeight: FontWeight.bold,
         ),
       ),

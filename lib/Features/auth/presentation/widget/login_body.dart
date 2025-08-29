@@ -28,14 +28,9 @@ class _LoginBodyState extends State<LoginBody> {
     super.dispose();
   }
 
-
-
   void _onLoginPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      // Form is valid, proceed with login
-      print('Email: ${_emailController.text}');
-      print('Password: ${_passwordController.text}');
-      // TODO: Implement actual login logic here
+      Get.toNamed(RoutePaths.home);
     }
   }
 
@@ -114,83 +109,80 @@ class _LoginBodyState extends State<LoginBody> {
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
-                  SizedBox(height: 18),
-                  GestureDetector(
-                    onTap: () {
-
-                      Get.toNamed(RoutePaths.forgotPassword);
-
-
-                    },
-                    child: Text(
-                      "forgotPassword".tr(),
-                      style: TextStyle(
-                        color: AppColors.secondry,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                    SizedBox(height: 18),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RoutePaths.forgotPassword);
+                      },
+                      child: Text(
+                        "forgotPassword".tr(),
+                        style: TextStyle(
+                          color: AppColors.secondry,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'dontHaveAccount'.tr(),
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                      SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(RoutePaths.signup);
-                        },
-                        child: Text(
-                          'RegisterNow'.tr(),
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: AppColors.secondry,
-                            fontWeight: FontWeight.bold,
+                    SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'dontHaveAccount'.tr(),
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                        SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(RoutePaths.signup);
+                          },
+                          child: Text(
+                            'RegisterNow'.tr(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: AppColors.secondry,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Divider(color: Colors.grey, thickness: 1),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          'OR'.tr(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(color: Colors.grey, thickness: 1),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            'OR'.tr(),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Divider(color: Colors.grey, thickness: 1),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  SocialButton(
-                    text: 'Google',
-                    iconPath: AssetsPaths.google,
-                    backgroundColor: AppColors.authAction,
-                    onPressed: () {},
-                  ),
-                  SizedBox(height: 12),
-                  SocialButton(
-                    text: 'Facebook'.tr(),
-                    iconPath: AssetsPaths.facebook,
-                    backgroundColor: AppColors.authAction,
-                    onPressed: () {},
-                  ),
+                        Expanded(
+                          child: Divider(color: Colors.grey, thickness: 1),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    SocialButton(
+                      text: 'Google',
+                      iconPath: AssetsPaths.google,
+                      backgroundColor: AppColors.authAction,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 12),
+                    SocialButton(
+                      text: 'Facebook'.tr(),
+                      iconPath: AssetsPaths.facebook,
+                      backgroundColor: AppColors.authAction,
+                      onPressed: () {},
+                    ),
                     SizedBox(height: 20),
                   ],
                 ),

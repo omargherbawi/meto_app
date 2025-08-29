@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/core/validation/text_field_validation.dart';
 
@@ -31,7 +32,7 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 40.h),
       child: Form(
         key: _formKey,
         child: Column(
@@ -40,12 +41,12 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
             Text(
               'Enter your email address'.tr(),
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             TextFormField(
               controller: _emailController,
               validator: TextFieldValidation.validateEmail,
@@ -58,23 +59,23 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.primaryColor,
-                    width: 2,
+                    width: 2.w,
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: AppColors.primaryColor.withOpacity(0.6),
                   ),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 2),
-                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.red, width: 2.w),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 2),
-                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: Colors.red, width: 2.w),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
                 prefixIcon: Icon(
                   Icons.email_outlined,
@@ -83,19 +84,19 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            SizedBox(height: 30.h),
             ElevatedButton(
               onPressed: _onSendResetLinkPressed,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primaryColor,
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 15.h),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.w),
                 ),
               ),
               child: Text(
                 'SendResetLink'.tr(),
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                style: TextStyle(fontSize: 16.sp, color: Colors.white),
               ),
             ),
           ],
