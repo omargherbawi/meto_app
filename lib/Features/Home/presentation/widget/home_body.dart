@@ -10,37 +10,55 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HomeAppBar(),
-        Row(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 28.w, vertical: 30.h),
-              child: Text(
-                'YourMeetings'.tr(),
-                style: TextStyle(
-                  fontSize: 26.sp,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
+    return CustomScrollView(
+      slivers: [
+        // App Bar as a Sliver
+        SliverToBoxAdapter(child: HomeAppBar()),
+
+        // Header Section
+        SliverToBoxAdapter(
+          child: Row(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  top: 30.h,
+                  bottom: 16.h,
+                ),
+                child: Text(
+                  'YourMeetings'.tr(),
+                  style: TextStyle(
+                    fontSize: 26.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-            Spacer(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.add,
-                  color: AppColors.primaryColor,
-                  size: 35.sp,
+              Spacer(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.add,
+                    color: AppColors.primaryColor,
+                    size: 35.sp,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-        HomeMeetingsItem(),
+
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) => HomeMeetingsItem(),
+            childCount: 4,
+          ),
+        ),
+
+        SliverToBoxAdapter(child: SizedBox(height: 20.h)),
       ],
     );
   }
