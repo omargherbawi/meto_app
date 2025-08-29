@@ -9,7 +9,7 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+      padding: EdgeInsets.only(left: 16.w, top: 40.h, right: 16.w),
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Row(
