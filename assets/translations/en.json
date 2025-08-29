@@ -33,5 +33,9 @@
     "phoneRequired" : "Phone number is required",
     "phoneInvalid" : "Please enter a valid phone number",
     "fieldRequired" : "is required",
-    "fieldMinLength" : "must be at least"
+    "fieldMinLength" : "must be at least",
+    "SendResetLink" : "Send reset link",
+    "Enter your email address" : "Enter your email address"
+    
+    
 }

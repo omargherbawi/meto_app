@@ -34,6 +34,8 @@
      "phoneInvalid" : "يرجى إدخال رقم جوال صحيح",
      "fieldRequired" : "مطلوب",
      "fieldMinLength" : "يجب أن يكون على الأقل",
-     "ResetPassword" : "اعادة تعيين كلمة المرور"
+     "ResetPassword" : "اعادة تعيين كلمة المرور",
+     "SendResetLink" : "ارسل رابط اعادة التعيين",
+     "Enter your email address": "ادخل  بريدك الالكتروني"
      
 }
