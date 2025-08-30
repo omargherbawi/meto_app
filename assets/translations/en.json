@@ -39,8 +39,21 @@
     "YourMeetings" : "Your Meetings",
     "CreateMeeting" : "Create Meeting",
     "Save" : "Save",
-    "Cancel" : "Cancel"
-
-    
-    
+    "Cancel" : "Cancel",
+    "MeetingName" : "Meeting Name",
+    "Date" : "Date",
+    "Time" : "Time",
+    "SelectLocation" : "Select Location",
+    "Sendinvitevia" : "Send invite via :",
+    "MeetingNameRequired" : "Meeting name is required",
+    "MeetingNameMinLength" : "Meeting name must be at least 3 characters",
+    "MeetingNameMaxLength" : "Meeting name must be less than 50 characters",
+    "DateRequired" : "Date is required",
+    "DateSelectValid" : "Please select a valid date",
+    "DateNotPast" : "Date cannot be in the past",
+    "TimeRequired" : "Time is required",
+    "TimeSelectValid" : "Please select a valid time",
+    "LocationRequired" : "Location is required",
+    "LocationMinLength" : "Location must be at least 3 characters",
+    "LocationMaxLength" : "Location must be less than 100 characters"
 }

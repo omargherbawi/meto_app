@@ -21,7 +21,7 @@ class HomeBody extends StatelessWidget {
               left: 10.w,
               right: 20.w,
               top: 18.h,
-              bottom: 8.h,
+              bottom: 4.h,
             ),
             child: Row(
               children: [

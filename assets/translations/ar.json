@@ -40,7 +40,21 @@
      "YourMeetings" : "اجتماعاتك",
      "CreateMeeting" : "إنشاء اجتماع",
      "Save" : "حفظ",
-     "Cancel" : "الغاء"
-
-     
+     "Cancel" : "الغاء",
+     "MeetingName" : "اسم الاجتماع",
+     "Date" : "التاريخ",
+     "Time" : "الوقت",
+     "SelectLocation" : "اختر الموقع",
+     "Sendinvitevia" : "ارسل دعوة عبر :",
+     "MeetingNameRequired" : "اسم الاجتماع مطلوب",
+     "MeetingNameMinLength" : "يجب أن يكون اسم الاجتماع 3 أحرف على الأقل",
+     "MeetingNameMaxLength" : "يجب أن يكون اسم الاجتماع أقل من 50 حرف",
+     "DateRequired" : "التاريخ مطلوب",
+     "DateSelectValid" : "يرجى اختيار تاريخ صحيح",
+     "DateNotPast" : "لا يمكن أن يكون التاريخ في الماضي",
+     "TimeRequired" : "الوقت مطلوب",
+     "TimeSelectValid" : "يرجى اختيار وقت صحيح",
+     "LocationRequired" : "الموقع مطلوب",
+     "LocationMinLength" : "يجب أن يكون الموقع 3 أحرف على الأقل",
+     "LocationMaxLength" : "يجب أن يكون الموقع أقل من 100 حرف"
 }

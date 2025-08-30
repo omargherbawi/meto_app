@@ -53,7 +53,7 @@ class HomeMeetingsItem extends StatelessWidget {
                     child: Text(
                       'مكتمل',
                       style: TextStyle(
-                        fontSize: 18.sp,
+                        fontSize: 16.sp,
                         color: Color(0xff008D41),
                         fontWeight: FontWeight.normal,
                       ),
