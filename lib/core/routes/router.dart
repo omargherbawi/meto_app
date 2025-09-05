@@ -49,6 +49,13 @@ class AppRouter {
       transitionDuration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
     ),
-    GetPage(name: RoutePaths.meeting, page: () => const MeetingScreen()),
+
+    GetPage(
+      name: RoutePaths.meeting,
+      page: () => const MeetingScreen(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    ),
   ];
 }

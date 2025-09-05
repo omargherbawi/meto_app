@@ -15,7 +15,7 @@ class HomeAppBar extends StatelessWidget {
         child: Row(
           children: [
             CircleAvatar(
-              radius: 21.r,
+              radius: 19.r,
               backgroundImage: AssetImage(AssetsPaths.userAvatar),
             ),
             Spacer(),

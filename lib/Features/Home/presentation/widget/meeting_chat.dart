@@ -26,7 +26,7 @@ class MeetingChat extends StatelessWidget {
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
-                    hintText: 'Message',
+                    hintText: 'Message...'.tr(),
                     hintStyle: TextStyle(color: Color(0xffA4A5A7)),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
