@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
@@ -34,10 +33,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
       children: [
         // Section Title
         Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: 10.h,
-            horizontal: 10.w,
-          ),
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           child: Row(
             children: [
               Text(
@@ -57,10 +53,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 6.w),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(18.r),
-            border: Border.all(
-              color: AppColors.primaryColor,
-              width: 1,
-            ),
+            border: Border.all(color: AppColors.primaryColor, width: 1),
           ),
           child: Row(
             children: [
@@ -80,12 +73,10 @@ class MeetingSendInviteWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(17.r),
                     ),
                     child: Text(
-                      'Send via link',
+                      'Sendvialink'.tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: isLinkSelected
-                            ? Colors.white
-                            : Colors.black,
+                        color: isLinkSelected ? Colors.white : Colors.black,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -109,12 +100,10 @@ class MeetingSendInviteWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(17.r),
                     ),
                     child: Text(
-                      'Invite friends',
+                      'Invitefriends'.tr(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: !isLinkSelected
-                            ? Colors.white
-                            : Colors.black,
+                        color: !isLinkSelected ? Colors.white : Colors.black,
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -147,10 +136,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
           // Friends list section
           Container(
             decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.shade300,
-                width: 1,
-              ),
+              border: Border.all(color: Colors.grey.shade300, width: 1),
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Column(
@@ -171,9 +157,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundImage: AssetImage(
-                          AssetsPaths.userAvatar,
-                        ),
+                        backgroundImage: AssetImage(AssetsPaths.userAvatar),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(

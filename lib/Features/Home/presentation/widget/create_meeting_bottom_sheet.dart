@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/validation/meeting_validation.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_header_widget.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_form_fields_widget.dart';
@@ -52,7 +53,7 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       return;
     }
 
-    Get.back();
+    Get.toNamed(RoutePaths.meeting);
   }
 
   void onDateSelected(DateTime date) {
@@ -94,12 +95,12 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.95,
+      height: MediaQuery.of(context).size.height * 0.97,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(12.r),
-          topRight: Radius.circular(12.r),
+          topLeft: Radius.circular(15.r),
+          topRight: Radius.circular(15.r),
         ),
       ),
       child: Column(

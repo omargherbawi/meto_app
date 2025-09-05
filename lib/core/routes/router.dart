@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:meto_application/Features/Home/presentation/screens/home.dart';
+import 'package:meto_application/Features/Home/presentation/screens/home._screen.dart';
+import 'package:meto_application/Features/Home/presentation/screens/meeting_screen.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/screens/on_boarding.dart';
-import 'package:meto_application/Features/auth/presentation/screens/forgot_password.dart';
-import 'package:meto_application/Features/auth/presentation/screens/login.dart';
-import 'package:meto_application/Features/auth/presentation/screens/signup.dart';
+import 'package:meto_application/Features/auth/presentation/screens/forgot_password_screen.dart';
+import 'package:meto_application/Features/auth/presentation/screens/login_screen.dart';
+import 'package:meto_application/Features/auth/presentation/screens/signup_screen.dart';
 
 import 'route_paths.dart';
 
@@ -48,5 +49,6 @@ class AppRouter {
       transitionDuration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
     ),
+    GetPage(name: RoutePaths.meeting, page: () => const MeetingScreen()),
   ];
 }

@@ -4,4 +4,5 @@ class RoutePaths {
   static const String signup = '/signup';
   static const String forgotPassword = '/forgotPassword';
   static const String home = '/home';
+  static const String meeting = '/meeting';
 }
