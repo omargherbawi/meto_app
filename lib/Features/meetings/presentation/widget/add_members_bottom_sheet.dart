@@ -48,6 +48,7 @@ class _CreateMeetingBottomSheetState extends State<AddMembersBottomSheet> {
       child: Column(
         children: [
           MeetingHeaderWidget(
+            title: 'Invite',
             onCancel: () => Get.back(),
             onSave: () => Get.back(),
           ),

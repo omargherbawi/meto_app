@@ -16,9 +16,14 @@ class HomeAppBar extends StatelessWidget {
         textDirection: TextDirection.ltr,
         child: Row(
           children: [
-            CircleAvatar(
-              radius: 19.r,
-              backgroundImage: AssetImage(AssetsPaths.userAvatar),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(RoutePaths.settings);
+              },
+              child: CircleAvatar(
+                radius: 19.r,
+                backgroundImage: AssetImage(AssetsPaths.userAvatar),
+              ),
             ),
             Spacer(),
             IconButton(

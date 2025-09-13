@@ -9,5 +9,6 @@ class AssetsPaths {
   static const String onBoarding3 = 'assets/images/on_bording_3.png';
   static const String google = 'assets/Svgs/google.svg';
   static const String facebook = 'assets/Svgs/facebook.svg';
+  static const String edit = 'assets/Svgs/edit.svg';
   static const String userAvatar = 'assets/images/user_avatar.JPG';
 }

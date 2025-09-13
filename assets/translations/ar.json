@@ -50,6 +50,9 @@
      "Members" : "الأعضاء",
      "Notifications" : "الاشعارات",
      "Invitefriends" : "اصدقائي",
+     "Invite" : "اضافة اعضاء",
+     "Settings" : "الاعدادات",
+     "English" : "اللغة الانجليزية",
      "CancleMeeting" : "الغاء الاجتماع",
      "SelectLocation" : "اختر الموقع",
      "Sendinvitevia" : "ارسل دعوة عبر :",
@@ -63,5 +66,13 @@
      "TimeSelectValid" : "يرجى اختيار وقت صحيح",
      "LocationRequired" : "الموقع مطلوب",
      "LocationMinLength" : "يجب أن يكون الموقع 3 أحرف على الأقل",
-     "LocationMaxLength" : "يجب أن يكون الموقع أقل من 100 حرف"
+     "LocationMaxLength" : "يجب أن يكون الموقع أقل من 100 حرف",
+     "Account" : "الحساب",
+     "FullName" : "الاسم الكامل",
+     "ChangePassword" : "تغيير كلمة المرور",
+     "SignOut" : "تسجيل الخروج",
+     "MuteNotifications" : "كتم الإشعارات",
+     "Language" : "اللغة",
+     "Arabic" : "العربية",
+     "DeleteAccount" : "حذف الحساب"
 }

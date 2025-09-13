@@ -105,7 +105,11 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       ),
       child: Column(
         children: [
-          MeetingHeaderWidget(onSave: saveMeeting, onCancel: () => Get.back()),
+          MeetingHeaderWidget(
+            title: 'CreateMeeting',
+            onSave: saveMeeting,
+            onCancel: () => Get.back(),
+          ),
 
           Expanded(
             child: SingleChildScrollView(

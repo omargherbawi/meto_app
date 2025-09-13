@@ -6,11 +6,13 @@ import 'package:meto_application/config/app_colors.dart';
 class MeetingHeaderWidget extends StatelessWidget {
   final VoidCallback onSave;
   final VoidCallback onCancel;
+  final String title;
 
   const MeetingHeaderWidget({
     super.key,
     required this.onSave,
     required this.onCancel,
+    required this.title,
   });
 
   @override
@@ -37,7 +39,7 @@ class MeetingHeaderWidget extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            'CreateMeeting'.tr(),
+            title.tr(),
             style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,

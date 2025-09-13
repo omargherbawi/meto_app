@@ -39,6 +39,9 @@
     "YourMeetings" : "Your Meetings",
     "CreateMeeting" : "Create Meeting",
     "Save" : "Save",
+    "Settings" : "Settings",
+    "Invite" : "Invite",
+    "English" : "English",
     "Cancel" : "Cancel",
     "Notifications" : "Notifications",
     "MeetingName" : "Meeting Name",
@@ -62,5 +65,13 @@
     "TimeSelectValid" : "Please select a valid time",
     "LocationRequired" : "Location is required",
     "LocationMinLength" : "Location must be at least 3 characters",
-    "LocationMaxLength" : "Location must be less than 100 characters"
+    "LocationMaxLength" : "Location must be less than 100 characters",
+    "Account" : "Account",
+    "FullName" : "Full Name",
+    "ChangePassword" : "Change Password",
+    "SignOut" : "Sign Out",
+    "MuteNotifications" : "Mute Notifications",
+    "Language" : "Language",
+    "Arabic" : "Arabic",
+    "DeleteAccount" : "Delete Account"
 }
