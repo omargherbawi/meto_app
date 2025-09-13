@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:meto_application/Features/Home/presentation/widget/message_item.dart';
+import 'package:meto_application/Features/meetings/presentation/widget/message_item.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 

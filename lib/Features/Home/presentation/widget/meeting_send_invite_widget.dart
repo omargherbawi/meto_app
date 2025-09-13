@@ -31,7 +31,6 @@ class MeetingSendInviteWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Section Title
         Padding(
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           child: Row(
@@ -48,7 +47,6 @@ class MeetingSendInviteWidget extends StatelessWidget {
           ),
         ),
 
-        // Toggle Switch
         Container(
           margin: EdgeInsets.symmetric(horizontal: 6.w),
           decoration: BoxDecoration(
@@ -57,7 +55,6 @@ class MeetingSendInviteWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Send via link option
               Expanded(
                 child: GestureDetector(
                   onTap: onLinkSelected,
@@ -84,7 +81,6 @@ class MeetingSendInviteWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              // Invite friends option
               Expanded(
                 child: GestureDetector(
                   onTap: onFriendsSelected,
@@ -117,9 +113,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
 
         SizedBox(height: 20.h),
 
-        // Content based on selection
         if (isLinkSelected) ...[
-          // Link sharing section
           CustomTextFormField(
             controller: TextEditingController(text: inviteLink),
             hintText: "Invite Link",
@@ -133,7 +127,6 @@ class MeetingSendInviteWidget extends StatelessWidget {
             ),
           ),
         ] else ...[
-          // Friends list section
           Container(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey.shade300, width: 1),

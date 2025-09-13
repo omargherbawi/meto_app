@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meto_application/Features/Home/presentation/widget/meeting_header.dart';
-import 'package:meto_application/Features/Home/presentation/widget/meeting_chat.dart';
+import 'package:meto_application/Features/meetings/presentation/widget/meeting_header.dart';
+import 'package:meto_application/Features/meetings/presentation/widget/meeting_chat.dart';
 
 class MeetingBody extends StatelessWidget {
   const MeetingBody({super.key});
@@ -10,9 +10,7 @@ class MeetingBody extends StatelessWidget {
     return Column(
       children: [
         MeetingHeader(),
-        Expanded(
-          child: MeetingChat(),
-        ),
+        Expanded(child: MeetingChat()),
       ],
     );
   }

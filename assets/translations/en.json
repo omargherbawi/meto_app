@@ -41,6 +41,8 @@
     "Save" : "Save",
     "Cancel" : "Cancel",
     "MeetingName" : "Meeting Name",
+    "Members" : "Members",
+    "CancleMeeting" : "Cancle Meeting",
     "Date" : "Date",
     "Message..." : "Message...",
     "Time" : "Time",
