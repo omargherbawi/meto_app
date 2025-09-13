@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/route_manager.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
+import 'package:meto_application/core/routes/route_paths.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
@@ -21,7 +23,9 @@ class HomeAppBar extends StatelessWidget {
             Spacer(),
             IconButton(
               padding: EdgeInsets.zero,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(RoutePaths.notifications);
+              },
               icon: Icon(
                 Icons.notifications,
                 color: AppColors.primaryColor,

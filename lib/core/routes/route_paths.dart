@@ -6,4 +6,5 @@ class RoutePaths {
   static const String home = '/home';
   static const String meeting = '/meeting';
   static const String members = '/members';
+  static const String notifications = '/notifications';
 }

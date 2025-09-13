@@ -8,6 +8,7 @@ import 'package:meto_application/Features/OnBoarding/presentation/screens/on_boa
 import 'package:meto_application/Features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:meto_application/Features/auth/presentation/screens/login_screen.dart';
 import 'package:meto_application/Features/auth/presentation/screens/signup_screen.dart';
+import 'package:meto_application/Features/notifications/presentation/screens/notifications_screen.dart';
 
 import 'route_paths.dart';
 
@@ -61,6 +62,13 @@ class AppRouter {
     GetPage(
       name: RoutePaths.members,
       page: () => const MeetingMembers(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    ),
+    GetPage(
+      name: RoutePaths.notifications,
+      page: () => const NotificationsScreen(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
