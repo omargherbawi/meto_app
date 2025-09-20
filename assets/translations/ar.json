@@ -83,6 +83,8 @@
      "LogoutConfirmation" : "هل أنت متأكد من أنك تريد تسجيل الخروج؟",
      "Yes" : "نعم",
      "No" : "لا",
-     "DeleteAccountConfirmation" : "حذف الحساب",
-     "DeleteAccountWarning" : "هل أنت متأكد من أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء وستفقد جميع بياناتك نهائياً."
+    "DeleteAccountConfirmation" : "حذف الحساب",
+    "DeleteAccountWarning" : "هل أنت متأكد من أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء وستفقد جميع بياناتك نهائياً.",
+    "Select" : "اختر",
+    "SelectedLocation" : "الموقع المحدد"
 }

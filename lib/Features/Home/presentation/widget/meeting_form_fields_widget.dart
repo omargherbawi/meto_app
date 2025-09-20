@@ -14,6 +14,7 @@ class MeetingFormFieldsWidget extends StatelessWidget {
   final bool showValidationErrors;
   final VoidCallback onDateTap;
   final VoidCallback onTimeTap;
+  final VoidCallback onLocationTap;
   final Function(String)? onFieldChanged;
 
   const MeetingFormFieldsWidget({
@@ -27,6 +28,7 @@ class MeetingFormFieldsWidget extends StatelessWidget {
     required this.showValidationErrors,
     required this.onDateTap,
     required this.onTimeTap,
+    required this.onLocationTap,
     required this.onFieldChanged,
   });
 
@@ -81,7 +83,9 @@ class MeetingFormFieldsWidget extends StatelessWidget {
               MeetingValidation.validateLocation(locationController.text) != null,
           errorText: showValidationErrors ? 
               MeetingValidation.validateLocation(locationController.text) : null,
-          onChanged: onFieldChanged,
+          onTap: onLocationTap,
+          enabled: true,
+          readOnly: true,
         ),
       ],
     );
@@ -95,6 +99,8 @@ class MeetingFormFieldsWidget extends StatelessWidget {
     String? errorText,
     VoidCallback? onTap,
     Function(String)? onChanged,
+    bool enabled = true,
+    bool readOnly = false,
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 10.h),
@@ -108,6 +114,8 @@ class MeetingFormFieldsWidget extends StatelessWidget {
             onTap: onTap,
             onChanged: onChanged,
             suffixIcon: suffixIcon,
+            enabled: enabled,
+            readOnly: readOnly,
           ),
           if (errorText != null)
             Padding(

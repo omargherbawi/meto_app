@@ -18,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
   final Function(String)? onChanged;
   final Function(String)? onFieldSubmitted;
   final bool isError;
+  final bool readOnly;
 
   const CustomTextFormField({
     super.key,
@@ -36,6 +37,7 @@ class CustomTextFormField extends StatefulWidget {
     this.onChanged,
     this.onFieldSubmitted,
     this.isError = false,
+    this.readOnly = false,
   });
 
   @override
@@ -56,6 +58,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       onTap: widget.onTap,
       onChanged: widget.onChanged,
       onFieldSubmitted: widget.onFieldSubmitted,
+      readOnly: widget.readOnly,
       decoration: InputDecoration(
         hintText: widget.hintText,
         labelText: widget.labelText,

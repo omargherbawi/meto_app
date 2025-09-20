@@ -83,5 +83,7 @@
     "Yes" : "Yes",
     "No" : "No",
     "DeleteAccountConfirmation" : "Delete Account",
-    "DeleteAccountWarning" : "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost."
+    "DeleteAccountWarning" : "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost.",
+    "Select" : "Select",
+    "SelectedLocation" : "Selected Location"
 }

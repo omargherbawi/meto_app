@@ -9,4 +9,5 @@ class RoutePaths {
   static const String notifications = '/notifications';
   static const String settings = '/settings';
   static const String changePassword = '/changePassword';
+  static const String map = '/map';
 }

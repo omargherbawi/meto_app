@@ -92,6 +92,33 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
     });
   }
 
+  void onLocationTap() async {
+    print('Location tap triggered!'); // Debug print
+    try {
+      final result = await Get.toNamed(RoutePaths.map);
+      print('Map screen result: $result'); // Debug print
+      if (result != null) {
+        setState(() {
+          locationController.text = result['address'] ?? '';
+          double lat = result['lat'];
+          double lng = result['lng'];
+          print('Location set: ${result['address']}'); // Debug print
+          // هنا رح نخزن اللوكيشن في Firebase
+          // FirebaseFirestore.instance.collection('meetings').add({
+          //   'address': result['address'],
+          //   'lat': lat,
+          //   'lng': lng,
+          // });
+        });
+        if (showValidationErrors) {
+          setState(() {});
+        }
+      }
+    } catch (e) {
+      print('Error navigating to map: $e'); // Debug print
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -135,6 +162,7 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
                       selectedTime: selectedTime,
                       onTimeSelected: onTimeSelected,
                     ),
+                    onLocationTap: onLocationTap,
                     onFieldChanged: onFieldChanged,
                   ),
 

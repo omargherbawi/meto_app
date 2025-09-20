@@ -11,6 +11,7 @@ import 'package:meto_application/Features/auth/presentation/screens/signup_scree
 import 'package:meto_application/Features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:meto_application/Features/profile/presentation/screens/profle_settings_screen.dart';
 import 'package:meto_application/Features/profile/presentation/screens/change_password_screen.dart';
+import 'package:meto_application/Features/Home/presentation/screens/map_screen.dart';
 
 import 'route_paths.dart';
 
@@ -89,5 +90,6 @@ class AppRouter {
       transitionDuration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     ),
+    GetPage(name: RoutePaths.map, page: () => const MapScreen()),
   ];
 }
