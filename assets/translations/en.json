@@ -85,5 +85,20 @@
     "DeleteAccountConfirmation" : "Delete Account",
     "DeleteAccountWarning" : "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost.",
     "Select" : "Select",
-    "SelectedLocation" : "Selected Location"
+    "SelectedLocation" : "Selected Location",
+    "FailedToGetAddress" : "Failed to get address",
+    "LocationSelectedSuccessfully" : "Location selected successfully",
+    "FailedToSelectLocation" : "Failed to select location",
+    "InviteLinkCopied" : "Invite link copied to clipboard",
+    "MeetingCreatedSuccessfully" : "Meeting created successfully",
+    "PleaseFillAllFields" : "Please fill in all required fields",
+    "AccountCreatedSuccessfully" : "Account created successfully",
+    "ResetLinkSentSuccessfully" : "Reset link sent successfully",
+    "LoggedOutSuccessfully" : "Logged out successfully",
+    "LogoutCancelled" : "Logout cancelled",
+    "AccountDeletedSuccessfully" : "Account deleted successfully",
+    "AccountDeletionCancelled" : "Account deletion cancelled",
+    "GettingLocation" : "Getting location...",
+    "WhereDoYouWantToGo" : "Where do you want to go?",
+    "ConfirmLocation" : "Confirm Location"
 }

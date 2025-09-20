@@ -11,9 +11,7 @@ class ToastUtils {
       error = tr("account_exist");
     }
 
-    // Ensure that the controller is initialized before calling `closeAllSnackbars`
     if (Get.isSnackbarOpen) {
-      // You can delay this action to allow the snackbar controller to be ready.
       Future.delayed(Duration.zero, () => Get.closeAllSnackbars());
     }
     Get.rawSnackbar(
@@ -32,7 +30,6 @@ class ToastUtils {
   // Show success snackbar
   static void showSuccess(String message) {
     if (Get.isSnackbarOpen) {
-      // Same as above, make sure to close snackbars with a delay to ensure initialization
       Future.delayed(Duration.zero, () => Get.closeAllSnackbars());
     }
     Get.rawSnackbar(

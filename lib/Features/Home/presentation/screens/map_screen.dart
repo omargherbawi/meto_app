@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:meto_application/config/app_colors.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide Trans;
 import 'package:geolocator/geolocator.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'dart:ui';
 
 class MapScreen extends StatefulWidget {
@@ -15,7 +17,7 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   GoogleMapController? mapController;
-  LatLng selectedLatLng = LatLng(31.9539, 35.9106); // موقع افتراضي: عمان
+  LatLng selectedLatLng = LatLng(31.9539, 35.9106); // Default location: Amman
   String address = '';
   bool isLoading = true;
 
@@ -230,7 +232,7 @@ class _MapScreenState extends State<MapScreen> {
         });
       }
     } catch (e) {
-      print('Error getting address: $e');
+      ToastUtils.showError('FailedToGetAddress');
     }
   }
 
@@ -278,7 +280,7 @@ class _MapScreenState extends State<MapScreen> {
                           ),
                           SizedBox(height: 20),
                           Text(
-                            'جاري تحديد الموقع...',
+                            'GettingLocation'.tr(),
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
@@ -300,9 +302,7 @@ class _MapScreenState extends State<MapScreen> {
               ),
               onMapCreated: (controller) {
                 mapController = controller;
-                // Apply custom map style
                 controller.setMapStyle(_mapStyle);
-                // Move camera to current location after map is created
                 if (selectedLatLng != LatLng(31.9539, 35.9106)) {
                   controller.animateCamera(
                     CameraUpdate.newLatLng(selectedLatLng),
@@ -310,7 +310,7 @@ class _MapScreenState extends State<MapScreen> {
                 }
               },
               myLocationEnabled: true,
-              myLocationButtonEnabled: false, // We'll create custom button
+              myLocationButtonEnabled: false,
               onCameraMove: (position) {
                 selectedLatLng = position.target;
               },
@@ -319,7 +319,6 @@ class _MapScreenState extends State<MapScreen> {
               },
             ),
           if (!isLoading) ...[
-            // Custom Location Pin
             Center(
               child: Container(
                 child: Column(
@@ -353,8 +352,6 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ),
             ),
-
-            // Top Bar with Back Button
             Positioned(
               top: MediaQuery.of(context).padding.top + 10,
               left: 20,
@@ -374,8 +371,6 @@ class _MapScreenState extends State<MapScreen> {
                 ],
               ),
             ),
-
-            // Bottom White Container with Location and Confirm Button
             if (address.isNotEmpty)
               Positioned(
                 bottom: 0,
@@ -459,7 +454,6 @@ class _MapScreenState extends State<MapScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Handle bar
           Container(
             margin: EdgeInsets.only(top: 12, bottom: 8),
             width: 40,
@@ -469,12 +463,10 @@ class _MapScreenState extends State<MapScreen> {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-
-          // Header
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Text(
-              'أين تريد الذهاب؟',
+              'WhereDoYouWantToGo'.tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -482,8 +474,6 @@ class _MapScreenState extends State<MapScreen> {
               ),
             ),
           ),
-
-          // Location Card
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             padding: EdgeInsets.all(16),
@@ -501,7 +491,6 @@ class _MapScreenState extends State<MapScreen> {
             ),
             child: Row(
               children: [
-                // Location Pin Icon
                 Container(
                   width: 40,
                   height: 40,
@@ -517,14 +506,12 @@ class _MapScreenState extends State<MapScreen> {
                 ),
 
                 SizedBox(width: 16),
-
-                // Address Text
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'الموقع المحدد',
+                        'SelectedLocation'.tr(),
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -544,8 +531,6 @@ class _MapScreenState extends State<MapScreen> {
                     ],
                   ),
                 ),
-
-                // Heart Icon (optional - like in the photo)
                 Container(
                   width: 40,
                   height: 40,
@@ -558,8 +543,6 @@ class _MapScreenState extends State<MapScreen> {
               ],
             ),
           ),
-
-          // Confirm Button
           Container(
             margin: EdgeInsets.fromLTRB(20, 8, 20, 20),
             width: double.infinity,
@@ -592,7 +575,7 @@ class _MapScreenState extends State<MapScreen> {
                 },
                 child: Center(
                   child: Text(
-                    'تأكيد الموقع',
+                    'ConfirmLocation'.tr(),
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,

@@ -5,6 +5,7 @@ import 'package:meto_application/Features/profile/presentation/widget/profile_av
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/widget/custom_confirmation_dialog.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class AcountSettings extends StatelessWidget {
@@ -20,12 +21,12 @@ class AcountSettings extends StatelessWidget {
       confirmButtonColor: Colors.red,
       onConfirm: () {
         // TODO: Implement actual logout logic here
-        print('User confirmed logout');
         // Example: Clear user data, navigate to login screen, etc.
         // Get.offAllNamed(RoutePaths.login);
+        ToastUtils.showSuccess('LoggedOutSuccessfully');
       },
       onCancel: () {
-        print('User cancelled logout');
+        ToastUtils.showError('LogoutCancelled');
       },
     );
   }

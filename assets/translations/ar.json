@@ -86,5 +86,20 @@
     "DeleteAccountConfirmation" : "حذف الحساب",
     "DeleteAccountWarning" : "هل أنت متأكد من أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء وستفقد جميع بياناتك نهائياً.",
     "Select" : "اختر",
-    "SelectedLocation" : "الموقع المحدد"
+    "SelectedLocation" : "الموقع المحدد",
+    "FailedToGetAddress" : "فشل في الحصول على العنوان",
+    "LocationSelectedSuccessfully" : "تم اختيار الموقع بنجاح",
+    "FailedToSelectLocation" : "فشل في اختيار الموقع",
+    "InviteLinkCopied" : "تم نسخ رابط الدعوة",
+    "MeetingCreatedSuccessfully" : "تم إنشاء الاجتماع بنجاح",
+    "PleaseFillAllFields" : "يرجى ملء جميع الحقول المطلوبة",
+    "AccountCreatedSuccessfully" : "تم إنشاء الحساب بنجاح",
+    "ResetLinkSentSuccessfully" : "تم إرسال رابط إعادة التعيين بنجاح",
+    "LoggedOutSuccessfully" : "تم تسجيل الخروج بنجاح",
+    "LogoutCancelled" : "تم إلغاء تسجيل الخروج",
+    "AccountDeletedSuccessfully" : "تم حذف الحساب بنجاح",
+    "AccountDeletionCancelled" : "تم إلغاء حذف الحساب",
+    "GettingLocation" : "جاري تحديد الموقع...",
+    "WhereDoYouWantToGo" : "أين تريد الذهاب؟",
+    "ConfirmLocation" : "تأكيد الموقع"
 }

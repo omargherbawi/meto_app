@@ -69,7 +69,6 @@ class TextFieldValidation {
     // Remove spaces, dashes, and parentheses
     final cleanedPhone = value.replaceAll(RegExp(r'[\s\-\(\)]'), '');
     
-    // Check if it contains only digits and is between 10-15 characters
     if (!RegExp(r'^\d{10,15}$').hasMatch(cleanedPhone)) {
       return 'phoneInvalid'.tr();
     }

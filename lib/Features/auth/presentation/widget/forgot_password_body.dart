@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/core/validation/text_field_validation.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
 
 class ForgotPasswordBody extends StatefulWidget {
   const ForgotPasswordBody({super.key});
@@ -23,9 +24,8 @@ class _ForgotPasswordBodyState extends State<ForgotPasswordBody> {
 
   void _onSendResetLinkPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      // Form is valid, proceed with sending reset link
-      print('Email: ${_emailController.text}');
       // TODO: Implement actual password reset logic here
+      ToastUtils.showSuccess('ResetLinkSentSuccessfully');
     }
   }
 

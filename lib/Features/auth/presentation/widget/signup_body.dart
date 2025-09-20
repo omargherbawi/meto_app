@@ -6,6 +6,7 @@ import 'package:meto_application/Features/auth/presentation/widget/social_button
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/validation/text_field_validation.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
 
 class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
@@ -32,12 +33,8 @@ class _SignupBodyState extends State<SignupBody> {
 
   void _onSignupPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      // Form is valid, proceed with signup
-      print('Name: ${_nameController.text}');
-      print('Email: ${_emailController.text}');
-      print('Password: ${_passwordController.text}');
-      print('Confirm Password: ${_confirmPasswordController.text}');
       // TODO: Implement actual signup logic here
+      ToastUtils.showSuccess('AccountCreatedSuccessfully');
     }
   }
 

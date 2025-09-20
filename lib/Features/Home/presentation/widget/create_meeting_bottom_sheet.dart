@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/validation/meeting_validation.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_header_widget.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_form_fields_widget.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_send_invite_widget.dart';
@@ -35,6 +36,7 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
 
   void copyToClipboard() {
     Clipboard.setData(ClipboardData(text: inviteLink));
+    ToastUtils.showSuccess('InviteLinkCopied');
   }
 
   void saveMeeting() {
@@ -50,9 +52,11 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       selectedDate: selectedDate,
       selectedTime: selectedTime,
     )) {
+      ToastUtils.showError('PleaseFillAllFields');
       return;
     }
 
+    ToastUtils.showSuccess('MeetingCreatedSuccessfully');
     Get.toNamed(RoutePaths.meeting);
   }
 
@@ -93,29 +97,25 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
   }
 
   void onLocationTap() async {
-    print('Location tap triggered!'); // Debug print
     try {
       final result = await Get.toNamed(RoutePaths.map);
-      print('Map screen result: $result'); // Debug print
       if (result != null) {
         setState(() {
           locationController.text = result['address'] ?? '';
-          double lat = result['lat'];
-          double lng = result['lng'];
-          print('Location set: ${result['address']}'); // Debug print
-          // هنا رح نخزن اللوكيشن في Firebase
+          // TODO: Store location in Firebase
           // FirebaseFirestore.instance.collection('meetings').add({
           //   'address': result['address'],
-          //   'lat': lat,
-          //   'lng': lng,
+          //   'lat': result['lat'],
+          //   'lng': result['lng'],
           // });
         });
         if (showValidationErrors) {
           setState(() {});
         }
+        ToastUtils.showSuccess('LocationSelectedSuccessfully');
       }
     } catch (e) {
-      print('Error navigating to map: $e'); // Debug print
+      ToastUtils.showError('FailedToSelectLocation');
     }
   }
 
