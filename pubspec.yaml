@@ -15,9 +15,13 @@ dependencies:
   flutter_launcher_icons: ^0.14.4
   flutter_native_splash: ^2.4.6
   flutter_screenutil: ^5.9.3
-  flutter_svg: ^2.2.0
+  flutter_svg: 
+  geocoding: ^4.0.0
+  geolocator: ^14.0.2
   get: ^4.7.2
-  google_fonts: ^6.3.0
+  google_fonts: 
+  google_maps_flutter: ^2.13.1
+  google_place: ^0.4.7
   logger: ^2.6.1
 
 dev_dependencies:
@@ -43,7 +47,6 @@ flutter_native_splash:
     color: "#613FDA"
     image: assets/images/splash.png
     icon_background_color: "#613FDA"
-
 
 flutter_icons:
   android: true
