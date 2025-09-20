@@ -8,4 +8,5 @@ class RoutePaths {
   static const String members = '/members';
   static const String notifications = '/notifications';
   static const String settings = '/settings';
+  static const String changePassword = '/changePassword';
 }

@@ -73,5 +73,15 @@
     "MuteNotifications" : "Mute Notifications",
     "Language" : "Language",
     "Arabic" : "Arabic",
-    "DeleteAccount" : "Delete Account"
+    "DeleteAccount" : "Delete Account",
+    "EnterNewPassword" : "Enter your new password",
+    "NewPassword" : "New Password",
+    "ConfirmNewPassword" : "Confirm New Password",
+    "Success" : "Success",
+    "PasswordChangedSuccessfully" : "Password changed successfully",
+    "LogoutConfirmation" : "Are you sure you want to logout?",
+    "Yes" : "Yes",
+    "No" : "No",
+    "DeleteAccountConfirmation" : "Delete Account",
+    "DeleteAccountWarning" : "Are you sure you want to delete your account? This action cannot be undone and all your data will be permanently lost."
 }

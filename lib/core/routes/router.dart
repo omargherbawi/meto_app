@@ -10,6 +10,7 @@ import 'package:meto_application/Features/auth/presentation/screens/login_screen
 import 'package:meto_application/Features/auth/presentation/screens/signup_screen.dart';
 import 'package:meto_application/Features/notifications/presentation/screens/notifications_screen.dart';
 import 'package:meto_application/Features/profile/presentation/screens/profle_settings_screen.dart';
+import 'package:meto_application/Features/profile/presentation/screens/change_password_screen.dart';
 
 import 'route_paths.dart';
 
@@ -77,6 +78,13 @@ class AppRouter {
     GetPage(
       name: RoutePaths.settings,
       page: () => const ProfleSettingsScreen(),
+      transition: Transition.rightToLeft,
+      transitionDuration: const Duration(milliseconds: 200),
+      curve: Curves.easeInOut,
+    ),
+    GetPage(
+      name: RoutePaths.changePassword,
+      page: () => const ChangePasswordScreen(),
       transition: Transition.rightToLeft,
       transitionDuration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,

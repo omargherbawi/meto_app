@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
+import 'package:meto_application/core/widget/custom_confirmation_dialog.dart';
 import 'account_settings.dart';
 import 'notification_settings.dart';
 import 'language_settings.dart';
@@ -14,6 +15,26 @@ class ProfleSettingsBody extends StatefulWidget {
 }
 
 class _ProfleSettingsBodyState extends State<ProfleSettingsBody> {
+  void _showDeleteAccountConfirmation(BuildContext context) {
+    CustomConfirmationDialog.show(
+      context: context,
+      title: "DeleteAccountConfirmation",
+      message: "DeleteAccountWarning",
+      confirmText: "Yes",
+      cancelText: "No",
+      confirmButtonColor: Colors.red,
+      onConfirm: () {
+        // TODO: Implement actual delete account logic here
+        print('User confirmed account deletion');
+        // Example: Clear user data, show loading, navigate to login screen, etc.
+        // Get.offAllNamed(RoutePaths.login);
+      },
+      onCancel: () {
+        print('User cancelled account deletion');
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,12 +55,15 @@ class _ProfleSettingsBodyState extends State<ProfleSettingsBody> {
           NotificationSettings(),
           LanguageSettings(),
           SizedBox(height: 23.h),
-          Text(
-            "DeleteAccount".tr(),
-            style: TextStyle(
-              fontSize: 22.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.red,
+          InkWell(
+            onTap: () => _showDeleteAccountConfirmation(context),
+            child: Text(
+              "DeleteAccount".tr(),
+              style: TextStyle(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.red,
+              ),
             ),
           ),
         ],
