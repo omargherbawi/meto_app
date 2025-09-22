@@ -454,15 +454,7 @@ class _MapScreenState extends State<MapScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 12, bottom: 8),
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
+          SizedBox(height: 13),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
             child: Text(
@@ -544,13 +536,13 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(20, 8, 20, 20),
+            margin: EdgeInsets.fromLTRB(20, 8, 20, 40),
             width: double.infinity,
-            height: 56,
+            height: 50,
             decoration: BoxDecoration(
               color: AppColors.primaryColor,
 
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(100),
 
               boxShadow: [
                 BoxShadow(

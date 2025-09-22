@@ -2,14 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meto_application/config/constants.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/routes/router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-
+  await Supabase.initialize(
+    url: AppConstants.supaBaseUrl,
+    anonKey: AppConstants.supaBaseAnonKey,
+  );
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -34,7 +39,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          initialRoute: RoutePaths.home,
+          initialRoute: RoutePaths.onBording,
           getPages: AppRouter.routes,
           theme: ThemeData(
             textTheme: isArabic
