@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/core/widget/custom_confirmation_dialog.dart';
-import 'package:meto_application/core/utils/toast_utils.dart';
 import 'account_settings.dart';
 import 'notification_settings.dart';
 import 'language_settings.dart';
@@ -28,11 +27,8 @@ class _ProfleSettingsBodyState extends State<ProfleSettingsBody> {
         // TODO: Implement actual delete account logic here
         // Example: Clear user data, show loading, navigate to login screen, etc.
         // Get.offAllNamed(RoutePaths.login);
-        ToastUtils.showSuccess('AccountDeletedSuccessfully');
       },
-      onCancel: () {
-        ToastUtils.showError('AccountDeletionCancelled');
-      },
+      onCancel: () {},
     );
   }
 

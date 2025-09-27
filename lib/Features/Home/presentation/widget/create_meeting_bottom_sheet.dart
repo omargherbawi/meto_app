@@ -36,7 +36,6 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
 
   void copyToClipboard() {
     Clipboard.setData(ClipboardData(text: inviteLink));
-    ToastUtils.showSuccess('InviteLinkCopied');
   }
 
   void saveMeeting() {
@@ -56,7 +55,6 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       return;
     }
 
-    ToastUtils.showSuccess('MeetingCreatedSuccessfully');
     Get.toNamed(RoutePaths.meeting);
   }
 
@@ -112,7 +110,6 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
         if (showValidationErrors) {
           setState(() {});
         }
-        ToastUtils.showSuccess('LocationSelectedSuccessfully');
       }
     } catch (e) {
       ToastUtils.showError('FailedToSelectLocation');

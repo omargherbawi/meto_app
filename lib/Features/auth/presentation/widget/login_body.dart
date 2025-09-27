@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart' hide Trans;
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:meto_application/Features/auth/presentation/widget/auth_text_field.dart';
 import 'package:meto_application/Features/auth/presentation/widget/social_button.dart';
 import 'package:meto_application/config/app_colors.dart';
@@ -20,6 +20,7 @@ class _LoginBodyState extends State<LoginBody> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final authController = Get.find<AuthController>();
 
   @override
   void dispose() {
@@ -28,9 +29,9 @@ class _LoginBodyState extends State<LoginBody> {
     super.dispose();
   }
 
-  void _onLoginPressed() {
+  void onLoginPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      Get.toNamed(RoutePaths.home);
+      authController.login(_emailController.text, _passwordController.text);
     }
   }
 
@@ -103,7 +104,7 @@ class _LoginBodyState extends State<LoginBody> {
                         ),
                         minimumSize: Size(double.infinity, 50),
                       ),
-                      onPressed: _onLoginPressed,
+                      onPressed: onLoginPressed,
                       child: Text(
                         'Login'.tr(),
                         style: TextStyle(color: Colors.white, fontSize: 18),

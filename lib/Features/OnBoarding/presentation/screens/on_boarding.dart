@@ -6,6 +6,7 @@ import 'package:meto_application/Features/OnBoarding/presentation/widget/on_boar
 import 'package:meto_application/Features/OnBoarding/presentation/widget/page_indexing.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
+import 'package:meto_application/core/services/hive_service.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -17,6 +18,7 @@ class OnBoarding extends StatefulWidget {
 class _OnBoardingState extends State<OnBoarding> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  final HiveServices _hiveService = Get.find<HiveServices>();
 
   final List<Map<String, String>> _pages = [
     {
@@ -37,7 +39,8 @@ class _OnBoardingState extends State<OnBoarding> {
   ];
 
   void _onSkip() {
-    Get.toNamed(RoutePaths.login);
+    _hiveService.setIsOnBoardingShown(true);
+    Get.offAllNamed(RoutePaths.login);
   }
 
   void _onNext() {
@@ -47,7 +50,8 @@ class _OnBoardingState extends State<OnBoarding> {
         curve: Curves.easeInOut,
       );
     } else {
-      Get.toNamed(RoutePaths.login);
+      _hiveService.setIsOnBoardingShown(true);
+      Get.offAllNamed(RoutePaths.login);
     }
   }
 

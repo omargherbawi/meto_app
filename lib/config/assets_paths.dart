@@ -1,5 +1,6 @@
 class AssetsPaths {
   static const String applogo = 'assets/images/app_logo.png';
+  static const String splash = 'assets/images/splash.png';
   static const String nobacklogo = 'assets/images/noback_logo.png';
   static const String login = 'assets/images/login.png';
   static const String register = 'assets/images/register.png';

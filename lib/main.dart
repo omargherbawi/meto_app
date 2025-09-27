@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:meto_application/config/constants.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/routes/router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meto_application/di.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -15,6 +17,11 @@ void main() async {
     url: AppConstants.supaBaseUrl,
     anonKey: AppConstants.supaBaseAnonKey,
   );
+
+  await Hive.initFlutter();
+  await Hive.openBox("App");
+  DependencyInjection.init();
+
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
@@ -39,7 +46,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          initialRoute: RoutePaths.onBording,
+          initialRoute: RoutePaths.userState,
           getPages: AppRouter.routes,
           theme: ThemeData(
             textTheme: isArabic

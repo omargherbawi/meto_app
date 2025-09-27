@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:meto_application/Features/auth/presentation/widget/auth_text_field.dart';
 import 'package:meto_application/Features/auth/presentation/widget/social_button.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/validation/text_field_validation.dart';
-import 'package:meto_application/core/utils/toast_utils.dart';
 
 class SignupBody extends StatefulWidget {
   const SignupBody({super.key});
@@ -21,6 +21,7 @@ class _SignupBodyState extends State<SignupBody> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+  final authController = Get.find<AuthController>();
 
   @override
   void dispose() {
@@ -31,10 +32,13 @@ class _SignupBodyState extends State<SignupBody> {
     super.dispose();
   }
 
-  void _onSignupPressed() {
+  void onSignupPressed() {
     if (_formKey.currentState?.validate() ?? false) {
-      // TODO: Implement actual signup logic here
-      ToastUtils.showSuccess('AccountCreatedSuccessfully');
+      authController.signup(
+        _emailController.text,
+        _passwordController.text,
+        _nameController.text,
+      );
     }
   }
 
@@ -50,7 +54,7 @@ class _SignupBodyState extends State<SignupBody> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.30,
             width: double.infinity,
-            child: Image.asset(AssetsPaths.signup, fit: BoxFit.cover,),
+            child: Image.asset(AssetsPaths.signup, fit: BoxFit.cover),
           ),
           Container(
             width: double.infinity,
@@ -78,7 +82,10 @@ class _SignupBodyState extends State<SignupBody> {
                     SizedBox(height: 16),
                     AuthTextField(
                       title: 'Name',
-                      prefixIcon: Icon(Icons.person_outlined, color: Colors.grey),
+                      prefixIcon: Icon(
+                        Icons.person_outlined,
+                        color: Colors.grey,
+                      ),
                       keyboardType: TextInputType.text,
                       controller: _nameController,
                       validator: TextFieldValidation.validateName,
@@ -86,7 +93,10 @@ class _SignupBodyState extends State<SignupBody> {
                     SizedBox(height: 16),
                     AuthTextField(
                       title: 'Email',
-                      prefixIcon: Icon(Icons.email_outlined, color: Colors.grey),
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: Colors.grey,
+                      ),
                       keyboardType: TextInputType.emailAddress,
                       controller: _emailController,
                       validator: TextFieldValidation.validateEmail,
@@ -113,10 +123,11 @@ class _SignupBodyState extends State<SignupBody> {
                       keyboardType: TextInputType.text,
                       isPassword: true,
                       controller: _confirmPasswordController,
-                      validator: (value) => TextFieldValidation.validateConfirmPassword(
-                        value,
-                        _passwordController.text,
-                      ),
+                      validator: (value) =>
+                          TextFieldValidation.validateConfirmPassword(
+                            value,
+                            _passwordController.text,
+                          ),
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
@@ -127,73 +138,73 @@ class _SignupBodyState extends State<SignupBody> {
                         ),
                         minimumSize: Size(double.infinity, 50),
                       ),
-                      onPressed: _onSignupPressed,
+                      onPressed: onSignupPressed,
                       child: Text(
                         'Signup'.tr(),
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ),
 
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'HaveAccount'.tr(),
-                        style: TextStyle(fontSize: 15, color: Colors.white),
-                      ),
-                      SizedBox(width: 4),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Text(
-                          'loginNow'.tr(),
-                          style: TextStyle(
-                            fontSize: 15,
-                            color: AppColors.secondry,
-                            fontWeight: FontWeight.bold,
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'HaveAccount'.tr(),
+                          style: TextStyle(fontSize: 15, color: Colors.white),
+                        ),
+                        SizedBox(width: 4),
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Text(
+                            'loginNow'.tr(),
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: AppColors.secondry,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Divider(color: Colors.grey, thickness: 1),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: Text(
-                          'OR'.tr(),
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Divider(color: Colors.grey, thickness: 1),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            'OR'.tr(),
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                        child: Divider(color: Colors.grey, thickness: 1),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  SocialButton(
-                    text: 'Google',
-                    iconPath: AssetsPaths.google,
-                    backgroundColor: AppColors.authAction,
-                    onPressed: () {},
-                  ),
-                  SizedBox(height: 12),
-                  SocialButton(
-                    text: 'Facebook'.tr(),
-                    iconPath: AssetsPaths.facebook,
-                    backgroundColor: AppColors.authAction,
-                    onPressed: () {},
-                  ),
+                        Expanded(
+                          child: Divider(color: Colors.grey, thickness: 1),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 12),
+                    SocialButton(
+                      text: 'Google',
+                      iconPath: AssetsPaths.google,
+                      backgroundColor: AppColors.authAction,
+                      onPressed: () {},
+                    ),
+                    SizedBox(height: 12),
+                    SocialButton(
+                      text: 'Facebook'.tr(),
+                      iconPath: AssetsPaths.facebook,
+                      backgroundColor: AppColors.authAction,
+                      onPressed: () {},
+                    ),
                     SizedBox(height: 20),
                   ],
                 ),

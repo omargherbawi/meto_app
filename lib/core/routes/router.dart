@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:meto_application/Features/Home/presentation/screens/home._screen.dart';
+import 'package:meto_application/Features/auth/presentation/Binding/auth_binding.dart';
+import 'package:meto_application/Features/auth/presentation/screens/user_state_scree.dart';
 import 'package:meto_application/Features/meetings/presentation/screens/meeting_members.dart';
 import 'package:meto_application/Features/meetings/presentation/screens/meeting_screen.dart';
 import 'package:meto_application/Features/OnBoarding/presentation/screens/on_boarding.dart';
@@ -17,6 +19,7 @@ import 'route_paths.dart';
 
 class AppRouter {
   static final List<GetPage> routes = [
+    GetPage(name: RoutePaths.userState, page: () => UserStateScreen()),
     GetPage(
       name: RoutePaths.onBording,
       page: () => const OnBoarding(),
@@ -27,6 +30,7 @@ class AppRouter {
     GetPage(
       name: RoutePaths.login,
       page: () => const Login(),
+      binding: AuthBinding(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
@@ -35,6 +39,7 @@ class AppRouter {
       name: RoutePaths.signup,
       page: () => const SignUp(),
       transition: Transition.fadeIn,
+      binding: AuthBinding(),
       transitionDuration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
     ),
@@ -80,6 +85,8 @@ class AppRouter {
       name: RoutePaths.settings,
       page: () => const ProfleSettingsScreen(),
       transition: Transition.rightToLeft,
+      binding: AuthBinding(),
+
       transitionDuration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
     ),

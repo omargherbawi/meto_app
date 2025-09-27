@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart' hide Trans;
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:meto_application/Features/profile/presentation/widget/profile_avatar_edit.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/widget/custom_confirmation_dialog.dart';
-import 'package:meto_application/core/utils/toast_utils.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class AcountSettings extends StatelessWidget {
   const AcountSettings({super.key});
 
   void _showLogoutConfirmation(BuildContext context) {
+    final authController = Get.find<AuthController>();
+
     CustomConfirmationDialog.show(
       context: context,
       title: "LogoutConfirmation",
@@ -20,14 +22,9 @@ class AcountSettings extends StatelessWidget {
       cancelText: "No",
       confirmButtonColor: Colors.red,
       onConfirm: () {
-        // TODO: Implement actual logout logic here
-        // Example: Clear user data, navigate to login screen, etc.
-        // Get.offAllNamed(RoutePaths.login);
-        ToastUtils.showSuccess('LoggedOutSuccessfully');
+        authController.logout();
       },
-      onCancel: () {
-        ToastUtils.showError('LogoutCancelled');
-      },
+      onCancel: () {},
     );
   }
 
