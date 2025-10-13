@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
@@ -10,6 +11,8 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
+    final userProfile = authController.profile.value;
     return Padding(
       padding: EdgeInsets.only(left: 16.w, top: 40.h, right: 16.w),
       child: Directionality(
@@ -21,8 +24,10 @@ class HomeAppBar extends StatelessWidget {
                 Get.toNamed(RoutePaths.settings);
               },
               child: CircleAvatar(
-                radius: 19.r,
-                backgroundImage: AssetImage(AssetsPaths.userAvatar),
+                radius: 21.r,
+                backgroundImage: userProfile?.avatarUrl != null
+                    ? NetworkImage(userProfile!.avatarUrl!)
+                    : AssetImage(AssetsPaths.userAvatar) as ImageProvider,
               ),
             ),
             Spacer(),

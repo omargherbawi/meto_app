@@ -30,6 +30,9 @@ class AcountSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authController = Get.find<AuthController>();
+    final userProfile = authController.profile.value;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -46,12 +49,12 @@ class AcountSettings extends StatelessWidget {
 
         AcountSettingsRow(
           subtitle: "FullName".tr(),
-          value: 'Omar Ahmad',
+          value: userProfile?.name ?? 'Guest User',
           hideIcon: true,
         ),
         AcountSettingsRow(
           subtitle: "Email".tr(),
-          value: 'q6VcM@example.com',
+          value: userProfile?.email ?? 'example@email.com',
           hideIcon: true,
         ),
         AcountSettingsRow(

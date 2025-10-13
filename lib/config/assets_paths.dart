@@ -11,5 +11,5 @@ class AssetsPaths {
   static const String google = 'assets/Svgs/google.svg';
   static const String facebook = 'assets/Svgs/facebook.svg';
   static const String edit = 'assets/Svgs/edit.svg';
-  static const String userAvatar = 'assets/images/user_avatar.JPG';
+  static const String userAvatar = 'assets/images/user.png';
 }

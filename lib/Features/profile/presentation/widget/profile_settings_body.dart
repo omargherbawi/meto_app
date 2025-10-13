@@ -47,7 +47,7 @@ class _ProfleSettingsBodyState extends State<ProfleSettingsBody> {
               color: AppColors.authAction,
             ),
           ),
-          SizedBox(height: 5.h),
+          SizedBox(height: 3.h),
           AcountSettings(),
           NotificationSettings(),
           LanguageSettings(),
