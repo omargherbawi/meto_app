@@ -59,4 +59,15 @@ class AuthRepositoryImpl implements AuthRepository {
       await remote.logout();
     });
   }
+
+  @override
+  Future<Either<Failure, Profile>> getProfile(String userId) async {
+    return await ErrorHandler.handle(() async {
+      final profile = await remote.getProfile(userId);
+      if (profile == null) {
+        throw const AuthFailure('profile_not_found');
+      }
+      return profile;
+    });
+  }
 }

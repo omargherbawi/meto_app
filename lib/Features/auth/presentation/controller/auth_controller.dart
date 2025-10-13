@@ -5,16 +5,19 @@ import '../../domain/entities/profile.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/signup_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';
+import '../../domain/usecases/get_profile_usecase.dart';
 
 class AuthController extends GetxController {
   final LoginUseCase loginUseCase;
   final SignupUseCase signupUseCase;
   final LogoutUseCase logoutUseCase;
+  final GetProfileUseCase getProfileUseCase;
 
   AuthController({
     required this.loginUseCase,
     required this.signupUseCase,
     required this.logoutUseCase,
+    required this.getProfileUseCase,
   });
 
   var isLoading = false.obs;
@@ -49,6 +52,16 @@ class AuthController extends GetxController {
         profile.value = null;
         Get.offAllNamed(RoutePaths.login);
       },
+    );
+  }
+
+  Future<void> loadCurrentUserProfile(String userId) async {
+    await EitherHelper.handleEither(
+      getProfileUseCase(userId),
+      onSuccess: (profileData) {
+        profile.value = profileData;
+      },
+      loading: isLoading,
     );
   }
 }

@@ -5,6 +5,7 @@ import 'package:meto_application/Features/auth/domain/repositories/auth_reposito
 import 'package:meto_application/Features/auth/domain/usecases/login_usecase.dart';
 import 'package:meto_application/Features/auth/domain/usecases/logout_usecase.dart';
 import 'package:meto_application/Features/auth/domain/usecases/signup_usecase.dart';
+import 'package:meto_application/Features/auth/domain/usecases/get_profile_usecase.dart';
 import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:meto_application/Features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:meto_application/Features/profile/data/repositories/profile_repository_impl.dart';
@@ -27,6 +28,7 @@ class DependencyInjection {
     Get.lazyPut(() => LoginUseCase(Get.find()));
     Get.lazyPut(() => SignupUseCase(Get.find()));
     Get.lazyPut(() => LogoutUseCase(Get.find()));
+    Get.lazyPut(() => GetProfileUseCase(Get.find()));
 
     // Profile Dependencies
     Get.lazyPut(() => ProfileRemoteDataSource(Supabase.instance.client));
@@ -41,6 +43,7 @@ class DependencyInjection {
         loginUseCase: Get.find(),
         signupUseCase: Get.find(),
         logoutUseCase: Get.find(),
+        getProfileUseCase: Get.find(),
       ),
       permanent: true,
     );

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/services/hive_service.dart';
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class UserStateScreen extends StatelessWidget {
@@ -24,12 +25,15 @@ class UserStateScreen extends StatelessWidget {
     await Future.delayed(const Duration(milliseconds: 100));
 
     final hiveService = Get.find<HiveServices>();
+    final authController = Get.find<AuthController>();
     final session = Supabase.instance.client.auth.currentSession;
     final isOnBoardingShown = hiveService.getIsOnBoardingShown();
 
     if (!isOnBoardingShown) {
       Get.offAllNamed(RoutePaths.onBording);
     } else if (session != null) {
+      // Load user profile before navigating to home
+      await authController.loadCurrentUserProfile(session.user.id);
       Get.offAllNamed(RoutePaths.home);
     } else {
       Get.offAllNamed(RoutePaths.login);

@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          initialRoute: RoutePaths.home,
+          initialRoute: RoutePaths.userState,
           getPages: AppRouter.routes,
           theme: ThemeData(
             textTheme: isArabic

@@ -7,6 +7,7 @@ import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/signup_usecase.dart';
 import '../../domain/usecases/logout_usecase.dart';
+import '../../domain/usecases/get_profile_usecase.dart';
 
 class AuthBinding extends Bindings {
   @override
@@ -17,12 +18,14 @@ class AuthBinding extends Bindings {
     Get.lazyPut(() => LoginUseCase(Get.find()));
     Get.lazyPut(() => SignupUseCase(Get.find()));
     Get.lazyPut(() => LogoutUseCase(Get.find()));
+    Get.lazyPut(() => GetProfileUseCase(Get.find()));
 
     Get.put(
       AuthController(
         loginUseCase: Get.find(),
         signupUseCase: Get.find(),
         logoutUseCase: Get.find(),
+        getProfileUseCase: Get.find(),
       ),
     );
   }
