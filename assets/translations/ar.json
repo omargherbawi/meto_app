@@ -131,5 +131,19 @@
     "forbidden" : "الوصول محظور",
     "conflict_error" : "تعارض في المورد",
     "rate_limit_error" : "طلبات كثيرة جداً",
-    "unknown_error" : "حدث خطأ غير متوقع"
+    "unknown_error" : "حدث خطأ غير متوقع",
+    
+    "AddProfilePhoto" : "إضافة صورة الملف الشخصي",
+    "AddPhotoSubtitle" : "أضف صورة حتى يعرفك أصدقاؤك",
+    "TapToAddPhoto" : "اضغط على الصورة لإضافة صورة",
+    "Continue" : "متابعة",
+    "ContinueWithoutPhoto" : "متابعة بدون صورة",
+    "AddProfilePicture" : "إضافة صورة الملف الشخصي",
+    "TakePhoto" : "التقاط صورة",
+    "ChooseFromGallery" : "اختيار من المعرض",
+    "RemovePhoto" : "إزالة الصورة",
+    "AvatarOptions" : "خيارات الصورة",
+    "UpdateAvatar" : "تحديث الصورة",
+    "AddAvatar" : "إضافة صورة",
+    "DeleteAvatar" : "حذف الصورة"
 }

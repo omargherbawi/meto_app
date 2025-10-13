@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,7 @@ class HomeAppBar extends StatelessWidget {
               child: CircleAvatar(
                 radius: 21.r,
                 backgroundImage: userProfile?.avatarUrl != null
-                    ? NetworkImage(userProfile!.avatarUrl!)
+                    ? CachedNetworkImageProvider(userProfile!.avatarUrl!)
                     : AssetImage(AssetsPaths.userAvatar) as ImageProvider,
               ),
             ),

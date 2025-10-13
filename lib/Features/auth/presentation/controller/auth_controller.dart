@@ -36,7 +36,7 @@ class AuthController extends GetxController {
       signupUseCase(email, password, name),
       onSuccess: (profileData) {
         profile.value = profileData;
-        Get.offAllNamed(RoutePaths.home);
+        Get.offAllNamed(RoutePaths.addAvatar);
       },
       loading: isLoading,
     );

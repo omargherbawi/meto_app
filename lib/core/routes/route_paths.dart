@@ -3,6 +3,7 @@ class RoutePaths {
   static const String onBording = '/onboarding';
   static const String login = '/login';
   static const String signup = '/signup';
+  static const String addAvatar = '/addAvatar';
   static const String forgotPassword = '/forgotPassword';
   static const String home = '/home';
   static const String meeting = '/meeting';

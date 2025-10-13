@@ -3,6 +3,7 @@ import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:meto_application/Features/Home/presentation/screens/home._screen.dart';
 import 'package:meto_application/Features/auth/presentation/Binding/auth_binding.dart';
+import 'package:meto_application/Features/auth/presentation/screens/add_avatar_screen.dart';
 import 'package:meto_application/Features/auth/presentation/screens/user_state_scree.dart';
 import 'package:meto_application/Features/meetings/presentation/screens/meeting_members.dart';
 import 'package:meto_application/Features/meetings/presentation/screens/meeting_screen.dart';
@@ -40,6 +41,13 @@ class AppRouter {
       page: () => const SignUp(),
       transition: Transition.fadeIn,
       binding: AuthBinding(),
+      transitionDuration: const Duration(milliseconds: 350),
+      curve: Curves.easeInOut,
+    ),
+    GetPage(
+      name: RoutePaths.addAvatar,
+      page: () => const AddAvatarScreen(),
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 350),
       curve: Curves.easeInOut,
     ),

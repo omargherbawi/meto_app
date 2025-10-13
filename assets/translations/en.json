@@ -129,5 +129,19 @@
     "forbidden" : "Access forbidden",
     "conflict_error" : "Resource conflict",
     "rate_limit_error" : "Too many requests",
-    "unknown_error" : "An unexpected error occurred"
+    "unknown_error" : "An unexpected error occurred",
+    
+    "AddProfilePhoto" : "Add Profile Photo",
+    "AddPhotoSubtitle" : "Add a photo so your friends know it's you",
+    "TapToAddPhoto" : "Tap on the avatar to add a photo",
+    "Continue" : "Continue",
+    "ContinueWithoutPhoto" : "Continue without photo",
+    "AddProfilePicture" : "Add Profile Picture",
+    "TakePhoto" : "Take Photo",
+    "ChooseFromGallery" : "Choose from Gallery",
+    "RemovePhoto" : "Remove Photo",
+    "AvatarOptions" : "Avatar Options",
+    "UpdateAvatar" : "Update Avatar",
+    "AddAvatar" : "Add Avatar",
+    "DeleteAvatar" : "Delete Avatar"
 }
