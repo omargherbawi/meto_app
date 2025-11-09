@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:meto_application/core/routes/route_paths.dart';
-import 'package:meto_application/core/validation/meeting_validation.dart';
-import 'package:meto_application/core/utils/toast_utils.dart';
-import 'package:meto_application/Features/Home/presentation/widget/meeting_header_widget.dart';
+import 'package:meto_application/Features/Home/domain/entities/meeting.dart';
+import 'package:meto_application/Features/Home/presentation/controller/home_controller.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_form_fields_widget.dart';
-import 'package:meto_application/Features/Home/presentation/widget/meeting_send_invite_widget.dart';
+import 'package:meto_application/Features/Home/presentation/widget/meeting_header_widget.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_picker_utils.dart';
+import 'package:meto_application/Features/Home/presentation/widget/meeting_send_invite_widget.dart';
+import 'package:meto_application/Features/auth/presentation/controller/auth_controller.dart';
+import 'package:meto_application/core/routes/route_paths.dart';
+import 'package:meto_application/core/utils/toast_utils.dart';
+import 'package:meto_application/core/validation/meeting_validation.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateMeetingBottomSheet extends StatefulWidget {
   const CreateMeetingBottomSheet({super.key});
@@ -31,14 +35,32 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
 
   DateTime? selectedDate;
   DateTime? selectedTime;
+  double? selectedLatitude;
+  double? selectedLongitude;
 
-  String inviteLink = 'https://meto.app/invite/XYZ123';
+  late final HomeController homeController;
+  late final AuthController authController;
+  final Uuid _uuid = const Uuid();
+
+  late String meetingId;
+  String inviteLink = '';
+
+  @override
+  void initState() {
+    super.initState();
+    homeController = Get.find<HomeController>();
+    authController = Get.find<AuthController>();
+    meetingId = _generateMeetingId();
+    inviteLink = _generateInviteLink(meetingId);
+  }
 
   void copyToClipboard() {
     Clipboard.setData(ClipboardData(text: inviteLink));
   }
 
   void saveMeeting() {
+    if (homeController.isCreatingMeeting.value) return;
+
     setState(() {
       showValidationErrors = true;
     });
@@ -55,7 +77,50 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       return;
     }
 
-    Get.toNamed(RoutePaths.meeting);
+    final ownerId = authController.profile.value?.id;
+    if (ownerId == null) {
+      ToastUtils.showError('PleaseLoginFirst');
+      return;
+    }
+
+    final currentMeetingId = _generateMeetingId();
+    final combinedInviteLink = _generateInviteLink(currentMeetingId);
+    final meetingDate = selectedDate!;
+    final meetingDateTime = DateTime(
+      meetingDate.year,
+      meetingDate.month,
+      meetingDate.day,
+      selectedTime!.hour,
+      selectedTime!.minute,
+    );
+
+    final meeting = Meeting(
+      id: currentMeetingId,
+      ownerId: ownerId,
+      title: meetingNameController.text.trim(),
+      location: locationController.text.trim(),
+      latitude: selectedLatitude,
+      longitude: selectedLongitude,
+      meetingTime: meetingDateTime,
+      inviteLink: combinedInviteLink,
+      status: 'scheduled',
+      date: meetingDate,
+    );
+
+    setState(() {
+      inviteLink = combinedInviteLink;
+      meetingId = currentMeetingId;
+    });
+
+    _createMeeting(meeting);
+  }
+
+  Future<void> _createMeeting(Meeting meeting) async {
+    final success = await homeController.createMeeting(meeting);
+    if (success) {
+      ToastUtils.showSuccess('MeetingCreated');
+      Get.back();
+    }
   }
 
   void onDateSelected(DateTime date) {
@@ -100,12 +165,8 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
       if (result != null) {
         setState(() {
           locationController.text = result['address'] ?? '';
-          // TODO: Store location in Firebase
-          // FirebaseFirestore.instance.collection('meetings').add({
-          //   'address': result['address'],
-          //   'lat': result['lat'],
-          //   'lng': result['lng'],
-          // });
+          selectedLatitude = (result['lat'] as num?)?.toDouble();
+          selectedLongitude = (result['lng'] as num?)?.toDouble();
         });
         if (showValidationErrors) {
           setState(() {});
@@ -190,5 +251,13 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
     timeController.dispose();
     locationController.dispose();
     super.dispose();
+  }
+
+  String _generateMeetingId() {
+    return _uuid.v4();
+  }
+
+  String _generateInviteLink(String meetingId) {
+    return 'https://meto.app/invite/$meetingId';
   }
 }

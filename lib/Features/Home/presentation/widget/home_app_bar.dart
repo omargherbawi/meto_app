@@ -25,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
                 Get.toNamed(RoutePaths.settings);
               },
               child: CircleAvatar(
-                radius: 21.r,
+                radius: 20.r,
                 backgroundImage: userProfile?.avatarUrl != null
                     ? CachedNetworkImageProvider(userProfile!.avatarUrl!)
                     : AssetImage(AssetsPaths.userAvatar) as ImageProvider,

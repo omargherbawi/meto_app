@@ -14,6 +14,12 @@ import 'package:meto_application/Features/profile/domain/usecases/add_avatar_use
 import 'package:meto_application/Features/profile/domain/usecases/update_avatar_usecase.dart';
 import 'package:meto_application/Features/profile/domain/usecases/delete_avatar_usecase.dart';
 import 'package:meto_application/Features/profile/presentation/controller/profile_controller.dart';
+import 'package:meto_application/Features/Home/data/datasources/home_remote_data_source.dart';
+import 'package:meto_application/Features/Home/data/repositories/meeting_repository_impl.dart';
+import 'package:meto_application/Features/Home/domain/repositories/meeting_repository.dart';
+import 'package:meto_application/Features/Home/domain/usecases/add_meeting.dart';
+import 'package:meto_application/Features/Home/domain/usecases/fetch_user_meeting.dart';
+import 'package:meto_application/Features/Home/presentation/controller/home_controller.dart';
 import 'package:meto_application/core/services/hive_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -37,6 +43,12 @@ class DependencyInjection {
     Get.lazyPut(() => UpdateAvatarUseCase(Get.find()));
     Get.lazyPut(() => DeleteAvatarUseCase(Get.find()));
 
+    // Home Dependencies
+    Get.lazyPut(() => HomeRemoteDataSource(Supabase.instance.client));
+    Get.lazyPut<MeetingRepository>(() => MeetingRepositoryImpl(Get.find()));
+    Get.lazyPut(() => AddMeeting(Get.find()));
+    Get.lazyPut(() => FetchUserMeeting(Get.find()));
+
     // Controllers
     Get.put(
       AuthController(
@@ -44,6 +56,13 @@ class DependencyInjection {
         signupUseCase: Get.find(),
         logoutUseCase: Get.find(),
         getProfileUseCase: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put(
+      HomeController(
+        addMeetingUseCase: Get.find(),
+        fetchUserMeetingUseCase: Get.find(),
       ),
       permanent: true,
     );

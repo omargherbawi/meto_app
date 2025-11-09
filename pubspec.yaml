@@ -28,6 +28,7 @@ dependencies:
   hive_flutter: ^1.1.0
   logger: ^2.6.1
   supabase_flutter: ^2.10.1
+  uuid: ^3.0.7
   image_picker: ^1.2.0
   cached_network_image: 
 
