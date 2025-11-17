@@ -5,8 +5,14 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
-    namespace = "com.example.meto_application"
+    namespace = "com.meto.app"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -20,21 +26,37 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.meto_application"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
+        applicationId = "com.meto.app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            if (keystorePropertiesFile.exists()) {
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+            } else {
+                println("⚠️ WARNING: key.properties not found. Release build will fail.")
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
             signingConfig = signingConfigs.getByName("debug")
+        }
+
+        release {
+            // Use your real release keystore
+            signingConfig = signingConfigs.release
+            // You can enable these if needed:
+            minifyEnabled false
+            shrinkResources false
         }
     }
 }
