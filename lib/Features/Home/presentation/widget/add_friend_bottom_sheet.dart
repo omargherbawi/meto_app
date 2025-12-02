@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart' hide Trans;
+import 'package:get/get.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/widget/custom_text_form_field.dart';
+import '../../../notifications/presentation/controller/friend_request_controller.dart';
 import '../controller/friends_controller.dart';
 
 class AddFriendBottomSheet extends StatefulWidget {
@@ -17,7 +17,11 @@ class AddFriendBottomSheet extends StatefulWidget {
 
 class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
   final TextEditingController searchController = TextEditingController();
-  final controller = Get.find<FriendsController>();
+  final friendsController = Get.find<FriendsController>();
+  final friendRequestController = Get.find<FriendRequestController>();
+  
+  // Track which users have pending requests
+  final Set<String> pendingRequestUserIds = {};
 
   @override
   Widget build(BuildContext context) {
@@ -40,45 +44,46 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
           ),
           SizedBox(height: 20.h),
           Text(
-            "AddFriend".tr(),
+            "Add Friend",
             style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 20.h),
           CustomTextFormField(
             controller: searchController,
-            hintText: "SearchByNameOrEmail".tr(),
+            hintText: "Search by name or email",
             prefixIcon: Icon(Icons.search, color: Colors.grey),
             onChanged: (value) {
-              // Debounce search could be added here
               if (value.length >= 1) {
-                controller.searchUsers(value);
+                friendsController.searchUsers(value);
               } else {
-                controller.searchResults.clear();
+                friendsController.searchResults.clear();
               }
             },
           ),
           SizedBox(height: 20.h),
           Expanded(
             child: Obx(() {
-              if (controller.isSearching.value) {
+              if (friendsController.isSearching.value) {
                 return const Center(child: CircularProgressIndicator());
               }
 
-              if (controller.searchResults.isEmpty &&
+              if (friendsController.searchResults.isEmpty &&
                   searchController.text.isNotEmpty) {
                 return Center(
                   child: Text(
-                    "NoUsersFound".tr(),
+                    "No users found",
                     style: TextStyle(color: Colors.grey, fontSize: 16.sp),
                   ),
                 );
               }
 
               return ListView.separated(
-                itemCount: controller.searchResults.length,
+                itemCount: friendsController.searchResults.length,
                 separatorBuilder: (context, index) => SizedBox(height: 12.h),
                 itemBuilder: (context, index) {
-                  final user = controller.searchResults[index];
+                  final user = friendsController.searchResults[index];
+                  final hasPendingRequest = pendingRequestUserIds.contains(user.id);
+                  
                   return ListTile(
                     leading: CircleAvatar(
                       backgroundImage: user.avatarUrl != null
@@ -87,15 +92,48 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                     ),
                     title: Text(user.name),
                     subtitle: Text(user.email),
-                    trailing: IconButton(
-                      icon: Icon(
-                        Icons.person_add,
-                        color: AppColors.primaryColor,
-                      ),
-                      onPressed: () {
-                        controller.addFriend(user.id);
-                      },
-                    ),
+                    trailing: hasPendingRequest
+                        ? Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 12.w,
+                              vertical: 6.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.grey[200],
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                            child: Text(
+                              'Pending',
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12.sp,
+                              ),
+                            ),
+                          )
+                        : Obx(() => friendRequestController.isSending.value
+                            ? SizedBox(
+                                width: 24.w,
+                                height: 24.w,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: AppColors.primaryColor,
+                                ),
+                              )
+                            : IconButton(
+                                icon: Icon(
+                                  Icons.person_add,
+                                  color: AppColors.primaryColor,
+                                ),
+                                onPressed: () async {
+                                  final success = await friendRequestController
+                                      .sendFriendRequest(user.id);
+                                  if (success) {
+                                    setState(() {
+                                      pendingRequestUserIds.add(user.id);
+                                    });
+                                  }
+                                },
+                              )),
                   );
                 },
               );

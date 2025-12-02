@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "730877406064",
+    "project_id": "meto-fb8b5",
+    "storage_bucket": "meto-fb8b5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730877406064:android:18a6c17ecd534e214dfdb5",
+        "android_client_info": {
+          "package_name": "com.meto.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbKJVr0CZFXPgzxA6m6fOnUmbGq3LwFHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

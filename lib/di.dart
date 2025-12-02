@@ -28,6 +28,15 @@ import 'package:meto_application/Features/Home/domain/repositories/meeting_repos
 import 'package:meto_application/Features/Home/domain/usecases/add_meeting.dart';
 import 'package:meto_application/Features/Home/domain/usecases/fetch_user_meeting.dart';
 import 'package:meto_application/Features/Home/presentation/controller/home_controller.dart';
+import 'package:meto_application/Features/notifications/data/datasources/friend_request_remote_data_source.dart';
+import 'package:meto_application/Features/notifications/data/repositories/friend_request_repository_impl.dart';
+import 'package:meto_application/Features/notifications/domain/repositories/friend_request_repository.dart';
+import 'package:meto_application/Features/notifications/domain/usecases/get_pending_requests_usecase.dart';
+import 'package:meto_application/Features/notifications/domain/usecases/send_friend_request_usecase.dart';
+import 'package:meto_application/Features/notifications/domain/usecases/accept_friend_request_usecase.dart';
+import 'package:meto_application/Features/notifications/domain/usecases/reject_friend_request_usecase.dart';
+import 'package:meto_application/Features/notifications/domain/usecases/check_existing_request_usecase.dart';
+import 'package:meto_application/Features/notifications/presentation/controller/friend_request_controller.dart';
 import 'package:meto_application/core/services/hive_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -65,6 +74,18 @@ class DependencyInjection {
     Get.lazyPut(() => RemoveFriendUseCase(Get.find()));
     Get.lazyPut(() => SearchUsersUseCase(Get.find()));
 
+    // Friend Request Dependencies
+    Get.lazyPut(() => FriendRequestRemoteDataSource(Supabase.instance.client));
+    Get.lazyPut<FriendRequestRepository>(() => FriendRequestRepositoryImpl(
+      Get.find<FriendRequestRemoteDataSource>(),
+      Get.find<FriendsRemoteDataSource>(),
+    ));
+    Get.lazyPut(() => GetPendingRequestsUseCase(Get.find()));
+    Get.lazyPut(() => SendFriendRequestUseCase(Get.find()));
+    Get.lazyPut(() => AcceptFriendRequestUseCase(Get.find()));
+    Get.lazyPut(() => RejectFriendRequestUseCase(Get.find()));
+    Get.lazyPut(() => CheckExistingRequestUseCase(Get.find()));
+
 
     // Controllers
     Get.put(
@@ -89,6 +110,16 @@ class DependencyInjection {
         addFriendUseCase: Get.find(),
         removeFriendUseCase: Get.find(),
         searchUsersUseCase: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put(
+      FriendRequestController(
+        getPendingRequestsUseCase: Get.find(),
+        sendFriendRequestUseCase: Get.find(),
+        acceptFriendRequestUseCase: Get.find(),
+        rejectFriendRequestUseCase: Get.find(),
+        checkExistingRequestUseCase: Get.find(),
       ),
       permanent: true,
     );

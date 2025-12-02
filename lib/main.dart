@@ -7,12 +7,17 @@ import 'package:meto_application/config/constants.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/routes/router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meto_application/core/services/push_notification_service.dart';
 import 'package:meto_application/di.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  
+  // Initialize Push Notifications (includes Firebase)
+  await PushNotificationService.initialize();
+  
   await Supabase.initialize(
     url: AppConstants.supaBaseUrl,
     anonKey: AppConstants.supaBaseAnonKey,

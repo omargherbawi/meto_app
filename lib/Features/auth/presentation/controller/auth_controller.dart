@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
+import 'package:meto_application/core/services/push_notification_service.dart';
 import 'package:meto_application/core/utils/either_helper.dart';
 import 'package:meto_application/Features/Home/presentation/controller/friends_controller.dart';
+import 'package:meto_application/Features/notifications/presentation/controller/friend_request_controller.dart';
 import '../../domain/entities/profile.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/signup_usecase.dart';
@@ -27,11 +29,19 @@ class AuthController extends GetxController {
   Future<void> login(String email, String password) async {
     await EitherHelper.handleEither(
       loginUseCase(email, password),
-      onSuccess: (profileData) {
+      onSuccess: (profileData) async {
         profile.value = profileData;
+        
+        // Save FCM token for push notifications
+        await PushNotificationService.requestAndSaveToken();
+        
         // Reload friends for the new user
         if (Get.isRegistered<FriendsController>()) {
           Get.find<FriendsController>().loadFriends();
+        }
+        // Reload friend requests for the new user
+        if (Get.isRegistered<FriendRequestController>()) {
+          Get.find<FriendRequestController>().loadPendingRequests();
         }
         Get.offAllNamed(RoutePaths.home);
       },
@@ -42,11 +52,19 @@ class AuthController extends GetxController {
   Future<void> signup(String email, String password, String name) async {
     await EitherHelper.handleEither(
       signupUseCase(email, password, name),
-      onSuccess: (profileData) {
+      onSuccess: (profileData) async {
         profile.value = profileData;
+        
+        // Save FCM token for push notifications
+        await PushNotificationService.requestAndSaveToken();
+        
         // Reload friends for the new user
         if (Get.isRegistered<FriendsController>()) {
           Get.find<FriendsController>().loadFriends();
+        }
+        // Reload friend requests for the new user
+        if (Get.isRegistered<FriendRequestController>()) {
+          Get.find<FriendRequestController>().loadPendingRequests();
         }
         Get.offAllNamed(RoutePaths.addAvatar);
       },
@@ -63,6 +81,12 @@ class AuthController extends GetxController {
         if (Get.isRegistered<FriendsController>()) {
           Get.find<FriendsController>().clearFriends();
         }
+        // Clear friend requests on logout
+        if (Get.isRegistered<FriendRequestController>()) {
+          Get.find<FriendRequestController>().clearRequests();
+        }
+        // Reset notification badge
+        PushNotificationService.resetBadgeCount();
         Get.offAllNamed(RoutePaths.login);
       },
     );
