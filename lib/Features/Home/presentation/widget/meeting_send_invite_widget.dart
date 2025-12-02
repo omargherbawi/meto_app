@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:meto_application/Features/auth/domain/entities/profile.dart';
 import 'package:meto_application/config/app_colors.dart';
 import 'package:meto_application/config/assets_paths.dart';
 import 'package:meto_application/core/widget/custom_text_form_field.dart';
@@ -11,7 +13,7 @@ class MeetingSendInviteWidget extends StatelessWidget {
   final VoidCallback onFriendsSelected;
   final VoidCallback onCopyLink;
   final String inviteLink;
-  final List<String> friends;
+  final List<Profile> friends;
   final Set<String> selectedFriends;
   final Function(String, bool?) onFriendSelectionChanged;
 
@@ -127,56 +129,68 @@ class MeetingSendInviteWidget extends StatelessWidget {
             ),
           ),
         ] else ...[
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.grey.shade300, width: 1),
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            child: Column(
-              children: friends.map((friend) {
-                return Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 12.h,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.grey.shade200,
-                        width: 0.5,
-                      ),
+          if (friends.isEmpty)
+            Padding(
+              padding: EdgeInsets.all(20.h),
+              child: Text(
+                "No friends found",
+                style: TextStyle(fontSize: 16.sp, color: Colors.grey),
+              ),
+            )
+          else
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey.shade300, width: 1),
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              child: Column(
+                children: friends.map((friend) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 12.h,
                     ),
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundImage: AssetImage(AssetsPaths.userAvatar),
-                      ),
-                      SizedBox(width: 16.w),
-                      Expanded(
-                        child: Text(
-                          friend,
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
-                          ),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: Colors.grey.shade200,
+                          width: 0.5,
                         ),
                       ),
-                      Checkbox(
-                        value: selectedFriends.contains(friend),
-                        onChanged: (bool? value) {
-                          onFriendSelectionChanged(friend, value);
-                        },
-                        activeColor: AppColors.primaryColor,
-                        checkColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
+                    ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundImage: friend.avatarUrl != null
+                              ? CachedNetworkImageProvider(friend.avatarUrl!)
+                              : AssetImage(AssetsPaths.userAvatar)
+                                    as ImageProvider,
+                        ),
+                        SizedBox(width: 16.w),
+                        Expanded(
+                          child: Text(
+                            friend.name,
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                        Checkbox(
+                          value: selectedFriends.contains(friend.id),
+                          onChanged: (bool? value) {
+                            onFriendSelectionChanged(friend.id, value);
+                          },
+                          activeColor: AppColors.primaryColor,
+                          checkColor: Colors.white,
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
-          ),
         ],
 
         SizedBox(height: 30.h),

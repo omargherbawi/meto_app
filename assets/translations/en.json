@@ -143,5 +143,14 @@
     "AvatarOptions" : "Avatar Options",
     "UpdateAvatar" : "Update Avatar",
     "AddAvatar" : "Add Avatar",
-    "DeleteAvatar" : "Delete Avatar"
+    "DeleteAvatar" : "Delete Avatar",
+    "Friends" : "Friends",
+    "NoFriendsYet" : "No friends yet",
+    "AddAFriend" : "Add a friend",
+    "AddFriend" : "Add Friend",
+    "SearchByNameOrEmail" : "Search by name or email",
+    "NoUsersFound" : "No users found",
+    "RemoveFriend" : "Remove Friend",
+    "RemoveFriendConfirmation" : "Are you sure you want to remove {name}?",
+    "Remove" : "Remove"
 }

@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:meto_application/core/routes/route_paths.dart';
 import 'package:meto_application/core/utils/either_helper.dart';
+import 'package:meto_application/Features/Home/presentation/controller/friends_controller.dart';
 import '../../domain/entities/profile.dart';
 import '../../domain/usecases/login_usecase.dart';
 import '../../domain/usecases/signup_usecase.dart';
@@ -28,6 +29,10 @@ class AuthController extends GetxController {
       loginUseCase(email, password),
       onSuccess: (profileData) {
         profile.value = profileData;
+        // Reload friends for the new user
+        if (Get.isRegistered<FriendsController>()) {
+          Get.find<FriendsController>().loadFriends();
+        }
         Get.offAllNamed(RoutePaths.home);
       },
       loading: isLoading,
@@ -39,6 +44,10 @@ class AuthController extends GetxController {
       signupUseCase(email, password, name),
       onSuccess: (profileData) {
         profile.value = profileData;
+        // Reload friends for the new user
+        if (Get.isRegistered<FriendsController>()) {
+          Get.find<FriendsController>().loadFriends();
+        }
         Get.offAllNamed(RoutePaths.addAvatar);
       },
       loading: isLoading,
@@ -50,6 +59,10 @@ class AuthController extends GetxController {
       logoutUseCase(),
       onSuccess: () {
         profile.value = null;
+        // Clear friends list on logout
+        if (Get.isRegistered<FriendsController>()) {
+          Get.find<FriendsController>().clearFriends();
+        }
         Get.offAllNamed(RoutePaths.login);
       },
     );

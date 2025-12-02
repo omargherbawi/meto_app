@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:meto_application/Features/Home/presentation/controller/friends_controller.dart';
 import 'package:meto_application/Features/Home/domain/entities/meeting.dart';
 import 'package:meto_application/Features/Home/presentation/controller/home_controller.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_form_fields_widget.dart';
@@ -25,7 +26,6 @@ class CreateMeetingBottomSheet extends StatefulWidget {
 class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
   bool isLinkSelected = true;
   bool showValidationErrors = false;
-  final List<String> friends = ['Mohammed', 'Sami', 'Ahmed', 'Fatima', 'Layla'];
   final Set<String> selectedFriends = {};
 
   final TextEditingController meetingNameController = TextEditingController();
@@ -40,6 +40,7 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
 
   late final HomeController homeController;
   late final AuthController authController;
+  late final FriendsController friendsController;
   final Uuid _uuid = const Uuid();
 
   late String meetingId;
@@ -50,6 +51,8 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
     super.initState();
     homeController = Get.find<HomeController>();
     authController = Get.find<AuthController>();
+    friendsController = Get.find<FriendsController>();
+    friendsController.loadFriends();
     meetingId = _generateMeetingId();
     inviteLink = _generateInviteLink(meetingId);
   }
@@ -224,17 +227,17 @@ class _CreateMeetingBottomSheetState extends State<CreateMeetingBottomSheet> {
                     onFieldChanged: onFieldChanged,
                   ),
 
-                  MeetingSendInviteWidget(
+                  Obx(() => MeetingSendInviteWidget(
                     isLinkSelected: isLinkSelected,
                     onLinkSelected: () => setState(() => isLinkSelected = true),
                     onFriendsSelected: () =>
                         setState(() => isLinkSelected = false),
                     onCopyLink: copyToClipboard,
                     inviteLink: inviteLink,
-                    friends: friends,
+                    friends: friendsController.friends.toList(),
                     selectedFriends: selectedFriends,
                     onFriendSelectionChanged: onFriendSelectionChanged,
-                  ),
+                  )),
                 ],
               ),
             ),

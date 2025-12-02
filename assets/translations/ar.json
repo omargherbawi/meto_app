@@ -145,5 +145,14 @@
     "AvatarOptions" : "خيارات الصورة",
     "UpdateAvatar" : "تحديث الصورة",
     "AddAvatar" : "إضافة صورة",
-    "DeleteAvatar" : "حذف الصورة"
+    "DeleteAvatar" : "حذف الصورة",
+    "Friends" : "الأصدقاء",
+    "NoFriendsYet" : "لا يوجد أصدقاء بعد",
+    "AddAFriend" : "إضافة صديق",
+    "AddFriend" : "إضافة صديق",
+    "SearchByNameOrEmail" : "البحث بالاسم أو البريد الإلكتروني",
+    "NoUsersFound" : "لم يتم العثور على مستخدمين",
+    "RemoveFriend" : "إزالة صديق",
+    "RemoveFriendConfirmation" : "هل أنت متأكد من أنك تريد إزالة {name}؟",
+    "Remove" : "إزالة"
 }

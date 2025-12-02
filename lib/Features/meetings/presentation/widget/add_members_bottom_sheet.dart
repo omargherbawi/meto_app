@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:meto_application/Features/Home/presentation/controller/friends_controller.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_header_widget.dart';
 import 'package:meto_application/Features/Home/presentation/widget/meeting_send_invite_widget.dart';
 
@@ -15,10 +16,17 @@ class AddMembersBottomSheet extends StatefulWidget {
 
 class _CreateMeetingBottomSheetState extends State<AddMembersBottomSheet> {
   bool isLinkSelected = true;
-  final List<String> friends = ['Mohammed', 'Sami', 'Ahmed', 'Fatima', 'Layla'];
   final Set<String> selectedFriends = {};
+  late final FriendsController friendsController;
 
   String inviteLink = 'https://meto.app/invite/XYZ123';
+
+  @override
+  void initState() {
+    super.initState();
+    friendsController = Get.find<FriendsController>();
+    friendsController.loadFriends();
+  }
 
   void copyToClipboard() {
     Clipboard.setData(ClipboardData(text: inviteLink));
@@ -59,17 +67,17 @@ class _CreateMeetingBottomSheetState extends State<AddMembersBottomSheet> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  MeetingSendInviteWidget(
+                  Obx(() => MeetingSendInviteWidget(
                     isLinkSelected: isLinkSelected,
                     onLinkSelected: () => setState(() => isLinkSelected = true),
                     onFriendsSelected: () =>
                         setState(() => isLinkSelected = false),
                     onCopyLink: copyToClipboard,
                     inviteLink: inviteLink,
-                    friends: friends,
+                    friends: friendsController.friends.toList(),
                     selectedFriends: selectedFriends,
                     onFriendSelectionChanged: onFriendSelectionChanged,
-                  ),
+                  )),
                 ],
               ),
             ),

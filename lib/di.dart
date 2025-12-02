@@ -14,6 +14,14 @@ import 'package:meto_application/Features/profile/domain/usecases/add_avatar_use
 import 'package:meto_application/Features/profile/domain/usecases/update_avatar_usecase.dart';
 import 'package:meto_application/Features/profile/domain/usecases/delete_avatar_usecase.dart';
 import 'package:meto_application/Features/profile/presentation/controller/profile_controller.dart';
+import 'package:meto_application/Features/Home/data/datasources/friends_remote_data_source.dart';
+import 'package:meto_application/Features/Home/data/repositories/friends_repository_impl.dart';
+import 'package:meto_application/Features/Home/domain/repositories/friends_repository.dart';
+import 'package:meto_application/Features/Home/domain/usecases/add_friend_usecase.dart';
+import 'package:meto_application/Features/Home/domain/usecases/get_friends_usecase.dart';
+import 'package:meto_application/Features/Home/domain/usecases/remove_friend_usecase.dart';
+import 'package:meto_application/Features/Home/domain/usecases/search_users_usecase.dart';
+import 'package:meto_application/Features/Home/presentation/controller/friends_controller.dart';
 import 'package:meto_application/Features/Home/data/datasources/home_remote_data_source.dart';
 import 'package:meto_application/Features/Home/data/repositories/meeting_repository_impl.dart';
 import 'package:meto_application/Features/Home/domain/repositories/meeting_repository.dart';
@@ -49,6 +57,15 @@ class DependencyInjection {
     Get.lazyPut(() => AddMeeting(Get.find()));
     Get.lazyPut(() => FetchUserMeeting(Get.find()));
 
+    // Friends Dependencies
+    Get.lazyPut(() => FriendsRemoteDataSource(Supabase.instance.client));
+    Get.lazyPut<FriendsRepository>(() => FriendsRepositoryImpl(Get.find()));
+    Get.lazyPut(() => GetFriendsUseCase(Get.find()));
+    Get.lazyPut(() => AddFriendUseCase(Get.find()));
+    Get.lazyPut(() => RemoveFriendUseCase(Get.find()));
+    Get.lazyPut(() => SearchUsersUseCase(Get.find()));
+
+
     // Controllers
     Get.put(
       AuthController(
@@ -63,6 +80,15 @@ class DependencyInjection {
       HomeController(
         addMeetingUseCase: Get.find(),
         fetchUserMeetingUseCase: Get.find(),
+      ),
+      permanent: true,
+    );
+    Get.put(
+      FriendsController(
+        getFriendsUseCase: Get.find(),
+        addFriendUseCase: Get.find(),
+        removeFriendUseCase: Get.find(),
+        searchUsersUseCase: Get.find(),
       ),
       permanent: true,
     );
