@@ -24,7 +24,7 @@ class AuthRemoteDataSource {
   Future<void> logout() async {
     await SupabaseLogger.logAuthOperation('LOGOUT', () async {
       await client.auth.signOut();
-      return AuthResponse(); // Dummy response for logout
+      return AuthResponse(); 
     });
   }
 

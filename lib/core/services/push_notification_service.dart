@@ -7,6 +7,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../config/app_colors.dart';
 import '../routes/route_paths.dart';
 
+import 'package:meto_application/firebase_options.dart';
+
 class PushNotificationService {
   static final PushNotificationService _instance = PushNotificationService._internal();
   factory PushNotificationService() => _instance;
@@ -15,7 +17,9 @@ class PushNotificationService {
   /// Initialize all notification services
   static Future<void> initialize() async {
     // Initialize Firebase first
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
     // Initialize Awesome Notifications
     await AwesomeNotifications().initialize(

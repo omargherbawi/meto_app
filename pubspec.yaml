@@ -34,10 +34,10 @@ dependencies:
   change_app_package_name: ^1.5.0
   font_awesome_flutter: ^10.12.0
   # Push Notifications
-  firebase_core: ^2.27.1
-  firebase_messaging: ^14.7.10
-  awesome_notifications: ^0.9.3+1
-  awesome_notifications_fcm: ^0.9.3+1
+  firebase_core: ^3.12.0
+  firebase_messaging: ^15.0.0
+  awesome_notifications: ^0.10.1
+  awesome_notifications_fcm: ^0.10.1
 
 dev_dependencies:
   flutter_lints: ^5.0.0

@@ -120,10 +120,10 @@ class _AddFriendBottomSheetState extends State<AddFriendBottomSheet> {
                                 ),
                               )
                             : IconButton(
-                                icon: Icon(
-                                  Icons.person_add,
-                                  color: AppColors.primaryColor,
-                                ),
+                      icon: Icon(
+                        Icons.person_add,
+                        color: AppColors.primaryColor,
+                      ),
                                 onPressed: () async {
                                   final success = await friendRequestController
                                       .sendFriendRequest(user.id);

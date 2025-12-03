@@ -34,8 +34,8 @@ class FriendsRemoteDataSource {
       'friends',
       () => client.from('friends').insert([
         {
-          'user_id': userId,
-          'friend_id': friendId,
+        'user_id': userId,
+        'friend_id': friendId,
         },
         {
           'user_id': friendId,
