@@ -8,6 +8,7 @@ import '../../config/app_colors.dart';
 import '../routes/route_paths.dart';
 
 import 'package:meto_application/firebase_options.dart';
+import '../../Features/notifications/presentation/controller/friend_request_controller.dart';
 
 class PushNotificationService {
   static final PushNotificationService _instance = PushNotificationService._internal();
@@ -85,12 +86,27 @@ class PushNotificationService {
     );
   }
 
+  /// Refresh friend requests when notifications are received
+  static void _refreshFriendRequests() {
+    try {
+      if (Get.isRegistered<FriendRequestController>()) {
+        Get.find<FriendRequestController>().loadPendingRequests();
+        debugPrint('Friend requests refreshed');
+      }
+    } catch (e) {
+      debugPrint('Error refreshing friend requests: $e');
+    }
+  }
+
   /// Called when user taps on notification
   @pragma('vm:entry-point')
   static Future<void> _onActionReceivedMethod(ReceivedAction receivedAction) async {
     debugPrint('Notification action received: ${receivedAction.payload}');
 
     final String? type = receivedAction.payload?['type'];
+
+    // Refresh friend requests data
+    _refreshFriendRequests();
 
     // Navigate based on notification type
     switch (type) {
@@ -109,6 +125,12 @@ class PushNotificationService {
   @pragma('vm:entry-point')
   static Future<void> _onNotificationCreatedMethod(ReceivedNotification receivedNotification) async {
     debugPrint('Notification created: ${receivedNotification.id}');
+    
+    // Refresh friend requests when friend request notifications are created
+    final String? type = receivedNotification.payload?['type'];
+    if (type == 'friend_request' || type == 'friend_accepted') {
+      _refreshFriendRequests();
+    }
   }
 
   /// Called when notification is displayed
@@ -131,6 +153,13 @@ class PushNotificationService {
     // Create a local notification from the silent data
     if (silentData.data != null) {
       final data = silentData.data!;
+      
+      // Refresh friend requests if this is a friend-related notification
+      final String? type = data['type']?.toString();
+      if (type == 'friend_request' || type == 'friend_accepted') {
+        _refreshFriendRequests();
+      }
+      
       // Convert Map<String, dynamic> to Map<String, String>
       final payload = data.map((key, value) => MapEntry(key, value.toString()));
       await showNotification(
